@@ -29,7 +29,7 @@ yellowPiece4.addEventListener('load', function() {
     ctx.drawImage(bluePiece1, 495, 620);
     ctx.drawImage(bluePiece2, 630, 620);
     // First move blue
-    ctx.drawImage(bluePiece3, 677, 375);
+    ctx.drawImage(bluePiece3, 627, 375);
     ctx.drawImage(bluePiece4, 495, 490);
     ctx.drawImage(yellowPiece1, 160, 620);
     ctx.drawImage(yellowPiece2, 25, 620);

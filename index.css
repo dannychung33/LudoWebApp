@@ -1,0 +1,26 @@
+div.dice {
+  float: left;
+  width: 32px;
+  position: relative;
+  top: 400px;
+  left: 800px;
+  background: #ffffff;
+  border-radius: 15px;
+  border: #999 2px solid;
+  padding: 25px;
+  font-size: 24px;
+  text-align: center;
+  margin: 5px;
+}
+
+button {
+  position: relative;
+  top: 430px;
+  left: 850px;
+}
+
+h2 {
+  position: relative;
+  top: 400px;
+  left: 800px;
+}
