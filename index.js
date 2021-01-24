@@ -40,20 +40,20 @@ let bluePiece4Pos = {
   y: 490
 }
 let yellowPiece1Pos = {
-  x: 160,
-  y: 620
+  x: 159,
+  y: 621
 }
 let yellowPiece2Pos = {
-  x: 25,
-  y: 620
+  x: 24,
+  y: 621
 }
 let yellowPiece3Pos = {
-  x: 25,
-  y: 500
+  x: 24,
+  y: 490
 }
 let yellowPiece4Pos = {
-  x: 160,
-  y: 500
+  x: 159,
+  y: 490
 }
 let greenPiece1Pos = {
   x: 25,
