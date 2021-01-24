@@ -2,48 +2,64 @@ Game Status: before
 Game status : ongoing
 game status: ended
 User
-	Player
-	Bot
-Game piece		Color, status(bool), = true: completed, false: not completed coordinate
+	- Player
+	- Bot
+Game piece:
+  - Color
+  - status(bool), = true: completed, false: not completed
+  - coordinate
+  - move method : move left / move right
 
 Methods for user:
-	getStatus(){
-		each piece of that player
-		if eachpiece.status is true
-		then the person wins
-	}
-called when the player/bot finishes his move :
-Get status: if all 4 pieces is completed game end user wins this player.gamepiece1.status == false return false
+  (bool)completedTheGame:true/false
 
-Generate Possible Moves: if all pieces are at home/completed: return [] else return the pieces that are outside [    [gamepiece1: start end]      [gamepiece2:start end]     ]
+  generate Choices(){
+
+  }
+  after move:
+  check if theres collision:
+    if collide with opponent:....
+    if collide with self: nothing happens square is blocked: opponent cannot go on there, if opponent will land on the same square, he will not move.
+  when the player/bot finishes his move :
+  Get status(){
+    if all 4 pieces is completed game end user wins this player.gamepiece1.status == false return false
+  }
+
+Generate Choices:
 
 // if u didn’t roll 6, all pieces that’s outside is the choice are all u choices
 // if u rolled 6 , all pieces that outside and the piece at home are all u choices
 
 
-
+// mousekeydown x in range  xxxx y in range XXX
+-----------------------------------------|
+|  if u want to move a piece click it    |
+|                                        |
+------------------------------------------
 
 Variable in user:
 game piece 1
 Game piece 2
 Game piece 3
 Game piece 4
-blue -> game piece 4 -> end position
-				-> move 1 position
-in turn:
+
+gamers = [user, bot, bot, bot]
+index = (determined by initial dice roll) 0
+finalresult = []
+unshift()
+while(gameIsNotFinished){
+In a turn:
+if user.finished == true go to the next player continue
 roll dice
 determine action
 moveleft/ moveright/not move
 getstatus
-if (gestates return true, end game declare winner)
-class game piece{
-	static status = false
-
-	instance of a game piece:
-	moveleft(){
-		…
-		if(x, y) ==  end of journey
-		game piece.status = true
-
-	}
+// game ends when 3 player is completed finalresult.length == 3
+// if (getstatus return true, end game declare winner)
+currentplayer = if(index == 3){next index = 0} else {index++}
 }
+declare winner
+finalresult[0] is the winner
+finalresult[1] is second
+finalresult[2] is third
+for loop which item is in currentplayer but not in finalresult
