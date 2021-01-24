@@ -1,10 +1,10 @@
 const canvas = document.querySelector('canvas');
-const ctx  = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 console.log(canvas);
 console.log(ctx);
-
+console.log('jenna')
 const img = new Image();
 const bluePiece1 = new Image();
 const bluePiece2 = new Image();
@@ -23,28 +23,28 @@ const yellowPiece2 = new Image();
 const yellowPiece3 = new Image();
 const yellowPiece4 = new Image();
 
-yellowPiece4.addEventListener('load', function() {
-    // execute drawImage statements here
-    ctx.drawImage(img, 0,0);
-    ctx.drawImage(bluePiece1, 495, 620);
-    ctx.drawImage(bluePiece2, 630, 620);
-    // First move blue
-    ctx.drawImage(bluePiece3, 627, 375);
-    ctx.drawImage(bluePiece4, 495, 490);
-    ctx.drawImage(yellowPiece1, 160, 620);
-    ctx.drawImage(yellowPiece2, 25, 620);
-    ctx.drawImage(yellowPiece3, 25, 500);
-    ctx.drawImage(yellowPiece4, 160, 500);
-    ctx.drawImage(greenPiece1, 25, 30);
-    ctx.drawImage(greenPiece2, 25, 160);
-    ctx.drawImage(greenPiece3, 155, 30);
-    ctx.drawImage(greenPiece4, 155, 160);
-    ctx.drawImage(redPiece1, 495, 30);
-    ctx.drawImage(redPiece2, 495, 160);
-    ctx.drawImage(redPiece3, 630, 30);
-    ctx.drawImage(redPiece4, 630, 160);
+yellowPiece4.addEventListener('load', function () {
+  // execute drawImage statements here
+  ctx.drawImage(img, 0, 0);
+  ctx.drawImage(bluePiece1, 495, 620);
+  ctx.drawImage(bluePiece2, 630, 620);
+  // First move blue
+  ctx.drawImage(bluePiece3, 627, 375);
+  ctx.drawImage(bluePiece4, 495, 490);
+  ctx.drawImage(yellowPiece1, 160, 620);
+  ctx.drawImage(yellowPiece2, 25, 620);
+  ctx.drawImage(yellowPiece3, 25, 500);
+  ctx.drawImage(yellowPiece4, 160, 500);
+  ctx.drawImage(greenPiece1, 25, 30);
+  ctx.drawImage(greenPiece2, 25, 160);
+  ctx.drawImage(greenPiece3, 155, 30);
+  ctx.drawImage(greenPiece4, 155, 160);
+  ctx.drawImage(redPiece1, 495, 30);
+  ctx.drawImage(redPiece2, 495, 160);
+  ctx.drawImage(redPiece3, 630, 30);
+  ctx.drawImage(redPiece4, 630, 160);
 
-  }, false);
+}, false);
 img.src = "./assets/LudoBoard.png";
 bluePiece1.src = "./assets/BluePiece96x96.png";
 bluePiece2.src = "./assets/BluePiece96x96.png";
