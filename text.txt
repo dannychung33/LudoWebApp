@@ -1,6 +1,19 @@
 Game Status: before
+clockwise: [green, red, blue, yellow]
+choose between green, yellow, red, blue []
+Green always start
+/ ** COLOR CHOICE ** /
+among the colors left after the user has chosen his color, randomly assign colors to Jenna, Priya and Danny bots
+
 Game status : ongoing
 Game status: ended
+/** WHEN A PLAYER COMPLETES HIS GAME  **/
+a confetti shower (if thats possible lol) and like a banner on top saying "1'st/2'nd/3'rd/4'th" position
+|------------------|
+| winner: xx       |
+| second: yy       |
+...
+
 array_of_possible_movements = [
 	green: [l, l, l, l, l, l, lu, u, u, u, u, ...],
   red: [],
@@ -56,7 +69,22 @@ we will also have a text box that shows who's turn it is
  -- order of turns is typically: green, red, blue, yellow
 
 
+/** END CONDITION **/
 
+/** BOT CHOICE **/
+priority list:
+	op1. Get a piece out
+  op2. for a piece get to landing square
+  op3. kill
+  op4. get into the safe zone
+  op5. move into a square where u have another piece in
+  op6. move away from an enemy that is 6 or less distance behind you
+  op7. move away from an enemy if ur roll gets u to at least 6 position away
+  Priya: op7, op6, op1, op3, op4, op5, op2
+  Jenna: op7, op1, op4, op5, op2, op3, op6
+  Danny:
+// if bot didn’t roll 6, all pieces that’s outside is the choice are all u choices, if the bot can kill,
+// if u rolled 6 , all pieces that outside and the piece at home are all u choices
 
 
 
@@ -101,8 +129,8 @@ while(gameIsNotFinished){
 In a turn:
 if user.finished == true go to the next player continue
 roll dice
-determine action
-moveleft/ moveright/not move
+determine action: iterate through all game pieces, if possible: light up, if none possible: move on to next player
+		moveleft/ moveright/not move
 getstatus
 // game ends when 3 player is completed finalresult.length == 3
 // if (getstatus return true, end game declare winner)
