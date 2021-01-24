@@ -1,0 +1,49 @@
+Game Status: before
+Game status : ongoing
+game status: ended
+User
+	Player
+	Bot
+Game piece		Color, status(bool), = true: completed, false: not completed coordinate
+
+Methods for user:
+	getStatus(){
+		each piece of that player
+		if eachpiece.status is true
+		then the person wins
+	}
+called when the player/bot finishes his move :
+Get status: if all 4 pieces is completed game end user wins this player.gamepiece1.status == false return false
+
+Generate Possible Moves: if all pieces are at home/completed: return [] else return the pieces that are outside [    [gamepiece1: start end]      [gamepiece2:start end]     ]
+
+// if u didn’t roll 6, all pieces that’s outside is the choice are all u choices
+// if u rolled 6 , all pieces that outside and the piece at home are all u choices
+
+
+
+
+Variable in user:
+game piece 1
+Game piece 2
+Game piece 3
+Game piece 4
+blue -> game piece 4 -> end position
+				-> move 1 position
+in turn:
+roll dice
+determine action
+moveleft/ moveright/not move
+getstatus
+if (gestates return true, end game declare winner)
+class game piece{
+	static status = false
+
+	instance of a game piece:
+	moveleft(){
+		…
+		if(x, y) ==  end of journey
+		game piece.status = true
+
+	}
+}
