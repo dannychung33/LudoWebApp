@@ -1,3 +1,4 @@
+
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = innerWidth;
@@ -133,6 +134,5 @@ function moveLeft(pos) {
 function moveRight(pos) {
   pos.x += 50
 }
-moveLeft(bluePiece3Pos)
-moveLeft(bluePiece3Pos)
-moveRight(bluePiece3Pos)
+
+
