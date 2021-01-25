@@ -141,3 +141,11 @@ finalresult[0] is the winner
 finalresult[1] is second
 finalresult[2] is third
 for loop which item is in currentplayer but not in finalresult
+
+
+// PossibleMovements = {
+//   'G': [s, r, r, r, r, ru, u, u, u, u, u, r, r, d, d, d, d, d, dr, r, r, r, r, r, d, d, l, l, l, l, l, dl, d, d, d, d, d, l, l, u, u, u, u, u, lu, l, l, l, l, l, u, r, r, r, r, r, e],
+//   'R': [],
+//   'Y': [],
+//   'B': []
+// }
