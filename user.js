@@ -77,7 +77,7 @@ PossibleMovements = {
   72: 'up',
   73: 'up',
   74: 'up',
-  75: 'up',
+  75: 'up'
 }
 
 // console.log(initLocal)
