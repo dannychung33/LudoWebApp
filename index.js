@@ -1,4 +1,3 @@
-
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = innerWidth;
@@ -110,7 +109,7 @@ yellowPiece4.addEventListener('load', function () {
   ctx.drawImage(redPiece4, redPiece4Pos.x, redPiece4Pos.y);
 
 }, false);
-img.src = "./assets/LudoBoard.png";
+img.src = "./assets/LudoBoard750x750.png";
 bluePiece1.src = "./assets/BluePiece96x96.png";
 bluePiece2.src = "./assets/BluePiece96x96.png";
 bluePiece3.src = "./assets/BluePiece96x96.png";
@@ -128,11 +127,48 @@ yellowPiece2.src = "./assets/YellowPiece96x96.png";
 yellowPiece3.src = "./assets/YellowPiece96x96.png";
 yellowPiece4.src = "./assets/YellowPiece96x96.png";
 
-function moveLeft(pos) {
-  pos.x -= 50
-}
-function moveRight(pos) {
-  pos.x += 50
-}
+/*
+function renderPieces(){
+  yellowPiece4.addEventListener('load', function () {
+  ctx.drawImage(bluePiece1, bluePiece1Pos.x, bluePiece1Pos.y);
+  ctx.drawImage(bluePiece2, bluePiece2Pos.x, bluePiece2Pos.y);
+  // First move blue
+  ctx.drawImage(bluePiece3, bluePiece3Pos.x, bluePiece3Pos.y);
+  ctx.drawImage(bluePiece4, bluePiece4Pos.x, bluePiece4Pos.y);
+  ctx.drawImage(yellowPiece1, yellowPiece1Pos.x, yellowPiece1Pos.y);
+  ctx.drawImage(yellowPiece2, yellowPiece2Pos.x, yellowPiece2Pos.y);
+  ctx.drawImage(yellowPiece3, yellowPiece3Pos.x, yellowPiece3Pos.y);
+  ctx.drawImage(yellowPiece4, yellowPiece4Pos.x, yellowPiece4Pos.y);
+  ctx.drawImage(greenPiece1, greenPiece1Pos.x, greenPiece1Pos.y);
+  ctx.drawImage(greenPiece2, greenPiece2Pos.x, greenPiece2Pos.y);
+  ctx.drawImage(greenPiece3, greenPiece3Pos.x, greenPiece3Pos.y);
+  ctx.drawImage(greenPiece4, greenPiece4Pos.x, greenPiece4Pos.y);
+  ctx.drawImage(redPiece1, redPiece1Pos.x, redPiece1Pos.y);
+  ctx.drawImage(redPiece2, redPiece2Pos.x, redPiece2Pos.y);
+  ctx.drawImage(redPiece3, redPiece3Pos.x, redPiece3Pos.y);
+  ctx.drawImage(redPiece4, redPiece4Pos.x, redPiece4Pos.y);
+
+}, false);
+*/
+canvas.addEventListener('click', function () {
+  console.log("click worked")
+  var x = bluePiece3Pos.x, y = bluePiece3Pos.y;
+    setInterval(function animate() {
+      
+      console.error();
+      return function () {
+        //requestAnimationFrame(animate);
+        ctx.clearRect(x, y, 96, 96);
+        //renderPieces();
+        ctx.drawImage(img, 0,0);
+
+        ctx.drawImage(bluePiece3, x, y);
+        x -= 1;
+        
+      };
+
+    }(), 1000/40);
+
+}, false);
 
 
