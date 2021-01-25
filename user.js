@@ -1,17 +1,11 @@
 const initLocal = require('./initialLocation.js')
-console.log(initLocal)
-class User {
+// console.log(initLocal)
+module.exports = class User {
   constructor(color) {
 
   }
-}
-class Human {
-  constructor() {
-    super(User)
+  write() {
+    console.log('i am user')
   }
 }
-class bot {
-  constructor() {
-    super(User)
-  }
-}
+
