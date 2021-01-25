@@ -80,6 +80,7 @@ PossibleMovements = {
   75: 'up'
 }
 
+
 // console.log(initLocal)
 module.exports = class User {
   constructor(color) {
@@ -90,24 +91,28 @@ module.exports = class User {
         this.start_global_id = 1;
         this.turning_position = 50;
         this.end_position = 57;
+        this.strip_start_position = 52;
         break;
 
       case "red":
         this.start_global_id = 14;
         this.turning_position = 12;
         this.end_position = 63;
+        this.strip_start_position = 58;
         break;
 
       case "blue":
         this.start_global_id = 27;
         this.turning_position = 25;
         this.end_position = 69;
+        this.strip_start_position = 64;
         break;
 
       case "yellow":
         this.start_global_id = 40;
         this.turning_position = 38;
         this.end_position = 75;
+        this.strip_start_position = 70;
         break;
     }
   }
@@ -122,9 +127,51 @@ module.exports = class User {
     return true;
   }
 
+  //checks if all the pieces for the user are at home
+  //returns true if they are all home, false otherwise
+  check_all_home() {
+    for (let i = 0; i < this.gamePieces.length; i++) {
+      if (this.gamePieces[i].current_global_spot != 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  //returns an array of game pieces that the user can move with the current chance
+  //will add "blocking" later
+  pieces_that_can_use_roll(chance) {
+    let capable_pieces = [];
+    for (let i = 0; i < this.gamePieces.length; i++) {
+      if (!this.gamePieces[i].is_complete && this.gamePieces[i].current_global_spot >= this.strip_start_position && this.gamePieces[i].current_global_spot + chance > this.end_position) {
+        continue;
+      }
+      else {
+        capable_pieces.push(this.gamePieces[i]);
+      }
+    }
+
+    return capable_pieces;
+  }
+
   //roll a die, decide how to move, make movement
   play_turn() {
     let chance = rollDice();
+
+    //checking if the user can even play a turn
+    if (chance != 6 && this.check_all_home()) {
+      console.log("we will have to pass you");
+      return;
+    }
+
+    //checking if the user has any pieces that he can move
+    let capable_pieces = this.pieces_that_can_use_roll(chance);
+    if (capable_pieces.length == 0) {
+      console.log("we will have to pass you");
+      return;
+    }
+
+
 
   }
 
@@ -132,5 +179,3 @@ module.exports = class User {
     console.log('i am user')
   }
 }
-
-
