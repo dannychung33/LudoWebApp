@@ -62,3 +62,8 @@ let redPiece4Pos = {
   x: 630,
   y: 160
 }
+// exports.bluePiece1 = bluePiece1Pos
+module.exports = {
+  bp1: bluePiece1Pos, bp2: bluePiece2Pos, bp3: bluePiece3Pos,
+  bp4: bluePiece4Pos, rp1: redPiece1Pos, rp3: redPiece3Pos, rp4: redPiece4Pos, rp2: redPiece2Pos, yp1: yellowPiece1Pos, yp2: yellowPiece2Pos, yp3: yellowPiece3Pos, yp4: yellowPiece4Pos, gp1: greenPiece1Pos, gp4: greenPiece4Pos, gp3: greenPiece3Pos, gp2: greenPiece2Pos
+}
