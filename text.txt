@@ -1,0 +1,151 @@
+Game Status: before
+clockwise: [green, red, blue, yellow]
+choose between green, yellow, red, blue []
+Green always start
+/ ** COLOR CHOICE ** /
+among the colors left after the user has chosen his color, randomly assign colors to Jenna, Priya and Danny bots
+
+Game status : ongoing
+Game status: ended
+/** WHEN A PLAYER COMPLETES HIS GAME  **/
+a confetti shower (if thats possible lol) and like a banner on top saying "1'st/2'nd/3'rd/4'th" position
+|------------------|
+| winner: xx       |
+| second: yy       |
+...
+
+array_of_possible_movements = [
+	green: [l, l, l, l, l, l, lu, u, u, u, u, ...],
+  red: [],
+  yellow: [],
+  blue: []
+]
+
+array_of_relevant_global_ids = [
+	green: [1, 2, 3, 4, ...],
+  red:   [14, 15, 16, ],
+  blue:  [28, ],
+  yellow: []
+]
+
+User
+	- Player
+	- Bot
+Game piece:
+  - Color
+  - status(bool), = true: completed, false: not completed
+  - position from home: how many spots have i moved
+  - current_global_spot: uniquely identify position of coin on board
+  - direction
+ // - move method : move left / move right
+
+//NOTE: whenever you move a coin, update the position from home and current_global_spot
+//User[] users
+//each user has an array of pieces
+//every piece has a current_global_spot
+//loop through the array of users, for every user, loop through pieces, check their global_ids, if any of their global ids match with
+//your current global id, send that piece of that user back to home ;) ~ with the exception of your piece :)
+//if there are multiple pieces of another user in the same spot as you're gonna land, then you miss your chance [sorry :(]
+//if you land in the same spot as another one of your own pieces, the size of each of these pieces, halves
+
+/** ABOUT WINNING **/
+so if you have a piece that lands in the home spot, you place it in its completed tray, and status changes to true
+ => create a completed tray for each house on the canvas
+ => remove one die
+
+/ ** MOVING PIECES **/
+we have an onClick for each of the coins, that when the user clicks on a piece, it becomes "active" (status: true)
+alos, when the user hovers on a piece, it lights up a bit to show that it is movable (onMouseOver/onHover)
+
+so basically, whenever a user has multiple pieces out, the one that they tap on, movement gets applied to it
+
+if the user does not have any pieces out yet, they cannot move until they first get a 6 on the die
+~ could show a little note that "no possible moves yet. get a 6 first mate :)"
+
+/ ** WHOSE TURN IT IS **/
+the die becomes the color of the house/user who's turn it is,
+we will also have a text box that shows who's turn it is
+
+ -- order of turns is typically: green, red, blue, yellow
+
+
+/** END CONDITION **/
+
+/** BOT CHOICE **/
+priority list:
+	op1. Get a piece out
+  op2. for a piece get to landing square
+  op3. kill
+  op4. get into the safe zone
+  op5. move into a square where u have another piece in
+  op6. move away from an enemy that is 6 or less distance behind you
+  op7. move away from an enemy if ur roll gets u to at least 6 position away
+  Priya: op7, op6, op1, op3, op4, op5, op2
+  Jenna: op7, op1, op4, op5, op2, op3, op6
+  Danny:
+// if bot didn’t roll 6, all pieces that’s outside is the choice are all u choices, if the bot can kill,
+// if u rolled 6 , all pieces that outside and the piece at home are all u choices
+
+
+
+Methods for user:
+  (bool)completedTheGame:true/false
+
+  generate Choices(){
+
+  }
+  after move:
+  check if theres collision:
+    if collide with opponent:....
+    if collide with self: nothing happens square is blocked: opponent cannot go on there, if opponent will land on the same square, he will not move.
+  when the player/bot finishes his move :
+  Get status(){
+    if all 4 pieces is completed game end user wins this player.gamepiece1.status == false return false
+  }
+
+Generate Choices:
+
+// if u didn’t roll 6, all pieces that’s outside is the choice are all u choices
+// if u rolled 6 , all pieces that outside and the piece at home are all u choices
+
+
+// mousekeydown x in range  xxxx y in range XXX
+-----------------------------------------|
+|  if u want to move a piece click it    |
+|                                        |
+------------------------------------------
+
+Variable in user:
+game piece 1
+Game piece 2
+Game piece 3
+Game piece 4
+
+gamers = [user, bot, bot, bot]
+index = (determined by initial dice roll) 0
+finalresult = []
+unshift()
+while(gameIsNotFinished){
+In a turn:
+if user.finished == true go to the next player continue
+roll dice
+determine action: iterate through all game pieces, if possible: light up, if none possible: move on to next player
+		moveleft/ moveright/not move
+getstatus
+// game ends when 3 player is completed finalresult.length == 3
+// if (getstatus return true, end game declare winner)
+currentplayer = if(index == 3){next index = 0} else {index++}
+}
+declare winner
+finalresult[0] is the winner
+finalresult[1] is second
+finalresult[2] is third
+for loop which item is in currentplayer but not in finalresult
+
+
+// PossibleMovements = {
+//   'G': [s, r, r, r, r, ru, u, u, u, u, u, r, r, d, d, d, d, d, dr, r, r, r, r, r, d, d, l, l, l, l, l, dl, d, d, d, d, d, l, l, u, u, u, u, u, lu, l, l, l, l, l, u, r, r, r, r, r, e],
+//   'R': [],
+//   'Y': [],
+//   'B': []
+// }
