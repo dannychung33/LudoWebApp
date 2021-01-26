@@ -89,7 +89,7 @@ let redPiece4 = {
   x: 630,
   y: 160
 }
-yellowPiece4.image.addEventListener('load', function () {
+yellowPiece2.image.addEventListener('load', function () {
   // execute drawImage statements here
   ctx.drawImage(gameBoard, 0, 0);
 
