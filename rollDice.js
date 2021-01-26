@@ -1,19 +1,14 @@
-<<<<<<< HEAD
-function rollDice(){
-=======
-module.exports = function rollDice(){
->>>>>>> 97d61d79421d1d6b1a3fd305f311be6d947f98fc
-    const die1 = document.getElementById("die1");
+let dice = document.getElementById('dice');
+var outputDiv = document.getElementById('diceResult');
 
-    const status = document.getElementById("status");
-    let d1 = Math.floor(Math.random() * 6) + 1;
-    
-    die1.innerHTML = d1;
+function rollDice() {
+    let result = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
+    dice.dataset.side = result;
+    dice.classList.toggle("reRoll");
 
-    status.innerHTML = "You rolled " + d1 + ".";
-<<<<<<< HEAD
-    
-=======
-    return d1;
->>>>>>> 97d61d79421d1d6b1a3fd305f311be6d947f98fc
+    console.log(result);
+	
+   
 }
+
+dice.addEventListener("click", rollDice);

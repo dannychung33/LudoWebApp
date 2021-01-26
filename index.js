@@ -246,26 +246,16 @@ canvas.addEventListener('click', function () {
 
 }, false);
 
-const die = document.getElementById("die1")
-
-die.addEventListener('click', function () {
-  console.log("click worked")
-  var x = bluePiece3.x, y = bluePiece3.y;
-
-  rightSlideMove(bluePiece3, x, y);
-
-}, false);
-
-document.onkeydown = function(e) {
+document.onkeyup = function(e) {
   switch (e.keyCode) {
       case 37:
-        leftSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+          leftSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
           break;
       case 38:
           upSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
           break;
       case 39:
-        rightSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+          rightSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
           break;
       case 40:
           downSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
