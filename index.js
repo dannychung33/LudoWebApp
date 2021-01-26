@@ -15,6 +15,7 @@ function init() {
   button.onclick = togglePayload;
 }
 document.addEventListener("DOMContentLoaded", init, false);
+alert("Click on canvas for left, click on dice for right, up and down keys for up and down")
 console.log(canvas);
 console.log(ctx);
 
@@ -100,8 +101,7 @@ let redPiece4 = {
   x: 630,
   y: 160
 }
-
-yellowPiece4.image.addEventListener('load', function () {
+yellowPiece2.image.addEventListener('load', function () {
   // execute drawImage statements here
   ctx.drawImage(gameBoard, 0, 0);
 
@@ -142,8 +142,6 @@ yellowPiece1.image.rc = "./assets/YellowPiece96x96.png";
 yellowPiece2.image.src = "./assets/YellowPiece96x96.png";
 yellowPiece3.image.src = "./assets/YellowPiece96x96.png";
 yellowPiece4.image.src = "./assets/YellowPiece96x96.png";
-bufferLoad.image.src = "./assets/YellowPiece96x96.png";
-
 
 function renderPieces() {
   ctx.drawImage(bluePiece1.image, bluePiece1.x, bluePiece1.y);
@@ -165,8 +163,6 @@ function renderPieces() {
   ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
 
 }
-const x = bluePiece3.x;
-const y = bluePiece3.y;
 
 function leftSlideMove(piece, pieceX, pieceY) {
   let startTime = Date.now();
@@ -177,7 +173,7 @@ function leftSlideMove(piece, pieceX, pieceY) {
 
       ctx.drawImage(gameBoard, 0, 0);
       renderPieces();
-      ctx.drawImage(piece, pieceX, pieceY);
+      ctx.drawImage(piece.image, pieceX, pieceY);
       pieceX -= 1;
       // stop condition
       if ((Date.now() - startTime) > 500) {
@@ -196,12 +192,56 @@ function rightSlideMove(piece, pieceX, pieceY) {
       //requestAnimationFrame(animate);
       ctx.clearRect(pieceX, pieceY, 96, 96);
 
-      ctx.drawImage(img, 0, 0);
+      ctx.drawImage(gameBoard, 0, 0);
       renderPieces();
-      ctx.drawImage(piece, pieceX, pieceY);
+      ctx.drawImage(piece.image, pieceX, pieceY);
       pieceX += 1;
-      if ((Date.now() - startTime) > 507) {
-        piece.x = pieceX;
+      // stop condition
+      if ((Date.now() - startTime) > 500) {
+        bluePiece3.x = pieceX;
+        clearInterval(slideInterval);
+      }
+    };
+
+  }(), 10)
+};
+
+
+function upSlideMove(piece, pieceX, pieceY) {
+  let startTime = Date.now();
+  let slideInterval = setInterval(function animate() {
+    return function () {
+      //requestAnimationFrame(animate);
+      ctx.clearRect(pieceX, pieceY, 96, 96);
+
+      ctx.drawImage(gameBoard, 0, 0);
+      renderPieces();
+      ctx.drawImage(piece.image, pieceX, pieceY);
+      pieceY -= 1;
+      // stop condition
+      if ((Date.now() - startTime) > 500) {
+        bluePiece3.y = pieceY;
+        clearInterval(slideInterval);
+      }
+    };
+
+  }(), 10)
+};
+
+function downSlideMove(piece, pieceX, pieceY) {
+  let startTime = Date.now();
+  let slideInterval = setInterval(function animate() {
+    return function () {
+      //requestAnimationFrame(animate);
+      ctx.clearRect(pieceX, pieceY, 96, 96);
+
+      ctx.drawImage(gameBoard, 0, 0);
+      renderPieces();
+      ctx.drawImage(piece.image, pieceX, pieceY);
+      pieceY += 1;
+      // stop condition
+      if ((Date.now() - startTime) > 500) {
+        bluePiece3.y = pieceY;
         clearInterval(slideInterval);
       }
     };
@@ -214,14 +254,36 @@ canvas.addEventListener('click', function () {
   console.log("click worked")
   var x = bluePiece3.x, y = bluePiece3.y;
 
-  leftSlideMove(bluePiece3.image, x, y);
+  leftSlideMove(bluePiece3, x, y);
 
 }, false);
 
-//window.addEventListener("onload", leftSlideMove(bluePiece3Pos.x, bluePiece3Pos.y))
+const die = document.getElementById("die1")
 
+die.addEventListener('click', function () {
+  console.log("click worked")
+  var x = bluePiece3.x, y = bluePiece3.y;
 
+  rightSlideMove(bluePiece3, x, y);
 
+}, false);
+
+document.onkeydown = function (e) {
+  switch (e.keyCode) {
+    case 37:
+      leftSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
+    case 38:
+      upSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
+    case 39:
+      rightSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
+    case 40:
+      downSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
+  }
+};
 
 
 
