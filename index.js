@@ -3,7 +3,18 @@ console.log(canvas.childNodes)
 const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = innerHeight;
-
+"use strict";
+var button
+var payload
+function togglePayload() {
+  payload.classList.toggle('hidden');
+}
+function init() {
+  button = document.querySelector('.button')
+  payload = document.querySelector('.payload')
+  button.onclick = togglePayload;
+}
+document.addEventListener("DOMContentLoaded", init, false);
 console.log(canvas);
 console.log(ctx);
 

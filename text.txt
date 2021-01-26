@@ -149,3 +149,6 @@ for loop which item is in currentplayer but not in finalresult
 //   'Y': [],
 //   'B': []
 // }
+glodaid = [
+  'g' :[1,2,3,4,5,6]
+]
