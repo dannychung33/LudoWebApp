@@ -2,7 +2,7 @@
   width: 90px;
   height: 90px;
   position: absolute;
-  top: 300px;
+  top: 500px;
   left: 1030px;
   transform-style: preserve-3d;
   transition: transform 1.5s ease-out;
@@ -198,13 +198,13 @@ canvas {
 .button {
   color: red;
   background-color: black;
-  }
+}
 
-  .payload {
-  color:black;
-  background-color: white
-  }
+.payload {
+  color: black;
+  background-color: white;
+}
 
-  .hidden {
+.hidden {
   display: none;
-  }
+}
