@@ -41,26 +41,6 @@ let bluePiece4 = {
   x: 495,
   y: 490
 }
-let yellowPiece1 = {
-  image: new Image(),
-  x: 159,
-  y: 621
-}
-let yellowPiece2 = {
-  image: new Image(),
-  x: 24,
-  y: 621
-}
-let yellowPiece3 = {
-  image: new Image(),
-  x: 24,
-  y: 490
-}
-let yellowPiece4 = {
-  image: new Image(),
-  x: 159,
-  y: 490
-}
 let greenPiece1 = {
   image: new Image(),
   x: 25,
@@ -101,7 +81,28 @@ let redPiece4 = {
   x: 630,
   y: 160
 }
-yellowPiece2.image.addEventListener('load', function () {
+let yellowPiece1 = {
+  image: new Image(),
+  x: 159,
+  y: 621
+}
+let yellowPiece2 = {
+  image: new Image(),
+  x: 24,
+  y: 621
+}
+let yellowPiece3 = {
+  image: new Image(),
+  x: 24,
+  y: 490
+}
+let yellowPiece4 = {
+  image: new Image(),
+  x: 159,
+  y: 490
+}
+
+yellowPiece4.image.addEventListener('load', function () {
   // execute drawImage statements here
   ctx.drawImage(gameBoard, 0, 0);
 
@@ -110,10 +111,6 @@ yellowPiece2.image.addEventListener('load', function () {
   // First move blue
   ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
   ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
-  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
-  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
-  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
-  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
   ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
   ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
   ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
@@ -122,6 +119,10 @@ yellowPiece2.image.addEventListener('load', function () {
   ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
   ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
   ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
+  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
+  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
+  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
+  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
 
 }, false);
 
@@ -149,10 +150,6 @@ function renderPieces() {
   // First move blue
   //ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
   ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
-  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
-  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
-  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
-  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
   ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
   ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
   ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
@@ -161,6 +158,10 @@ function renderPieces() {
   ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
   ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
   ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
+  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
+  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
+  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
+  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
 
 }
 
@@ -258,21 +259,6 @@ canvas.addEventListener('click', function () {
 
 }, false);
 
-document.onkeyup = function(e) {
-  switch (e.keyCode) {
-      case 37:
-          leftSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-          break;
-      case 38:
-          upSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-          break;
-      case 39:
-          rightSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-          break;
-      case 40:
-          downSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-          break;
-const die = document.getElementById("die1")
 
 die.addEventListener('click', function () {
   console.log("click worked")
@@ -282,7 +268,7 @@ die.addEventListener('click', function () {
 
 }, false);
 
-document.onkeydown = function (e) {
+document.onkeyup = function (e) {
   switch (e.keyCode) {
     case 37:
       leftSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
@@ -300,4 +286,4 @@ document.onkeydown = function (e) {
 };
 
 
-  }}
+  
