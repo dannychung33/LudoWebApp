@@ -15,7 +15,7 @@ function init() {
   button.onclick = togglePayload;
 }
 document.addEventListener("DOMContentLoaded", init, false);
-alert("Click on canvas for left, click on dice for right, up and down keys for up and down")
+//alert("Click on canvas for left, click on dice for right, up and down keys for up and down")
 console.log(canvas);
 console.log(ctx);
 
@@ -39,26 +39,6 @@ let bluePiece3 = {
 let bluePiece4 = {
   image: new Image(),
   x: 495,
-  y: 490
-}
-let yellowPiece1 = {
-  image: new Image(),
-  x: 159,
-  y: 621
-}
-let yellowPiece2 = {
-  image: new Image(),
-  x: 24,
-  y: 621
-}
-let yellowPiece3 = {
-  image: new Image(),
-  x: 24,
-  y: 490
-}
-let yellowPiece4 = {
-  image: new Image(),
-  x: 159,
   y: 490
 }
 let greenPiece1 = {
@@ -101,7 +81,30 @@ let redPiece4 = {
   x: 630,
   y: 160
 }
-yellowPiece2.image.addEventListener('load', function () {
+let yellowPiece1 = {
+  image: new Image(),
+  x: 159,
+  y: 621
+}
+let yellowPiece2 = {
+  image: new Image(),
+  x: 24,
+  y: 621
+}
+let yellowPiece3 = {
+  image: new Image(),
+  x: 24,
+  y: 490
+}
+let yellowPiece4 = {
+  image: new Image(),
+  x: 159,
+  y: 490
+}
+
+
+preloadFloorplan = function(){
+yellowPiece1.image.onload = function () {
   // execute drawImage statements here
   ctx.drawImage(gameBoard, 0, 0);
 
@@ -110,10 +113,6 @@ yellowPiece2.image.addEventListener('load', function () {
   // First move blue
   ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
   ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
-  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
-  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
-  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
-  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
   ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
   ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
   ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
@@ -122,26 +121,35 @@ yellowPiece2.image.addEventListener('load', function () {
   ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
   ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
   ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
+  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
+  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
+  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
+  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
 
-}, false);
-
+}
+}
+preloadFloorplan()
 gameBoard.src = "./assets/LudoBoard750x750.png";
 bluePiece1.image.src = "./assets/BluePiece96x96.png";
 bluePiece2.image.src = "./assets/BluePiece96x96.png";
 bluePiece3.image.src = "./assets/BluePiece96x96.png";
 bluePiece4.image.src = "./assets/BluePiece96x96.png";
-redPiece1.image.src = "./assets/RedPiece96x96.png";
-redPiece2.image.src = "./assets/RedPiece96x96.png";
-redPiece3.image.src = "./assets/RedPiece96x96.png";
-redPiece4.image.src = "./assets/RedPiece96x96.png";
+
 greenPiece1.image.src = "./assets/GreenPiece96x96.png";
 greenPiece2.image.src = "./assets/GreenPiece96x96.png";
 greenPiece3.image.src = "./assets/GreenPiece96x96.png";
 greenPiece4.image.src = "./assets/GreenPiece96x96.png";
-yellowPiece1.image.rc = "./assets/YellowPiece96x96.png";
+
+redPiece1.image.src = "./assets/RedPiece96x96.png";
+redPiece2.image.src = "./assets/RedPiece96x96.png";
+redPiece3.image.src = "./assets/RedPiece96x96.png";
+redPiece4.image.src = "./assets/RedPiece96x96.png";
+
+yellowPiece1.image.src = "./assets/YellowPiece96x96.png";
 yellowPiece2.image.src = "./assets/YellowPiece96x96.png";
 yellowPiece3.image.src = "./assets/YellowPiece96x96.png";
 yellowPiece4.image.src = "./assets/YellowPiece96x96.png";
+
 
 function renderPieces() {
   ctx.drawImage(bluePiece1.image, bluePiece1.x, bluePiece1.y);
@@ -149,10 +157,6 @@ function renderPieces() {
   // First move blue
   //ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
   ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
-  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
-  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
-  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
-  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
   ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
   ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
   ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
@@ -161,6 +165,10 @@ function renderPieces() {
   ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
   ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
   ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
+  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
+  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
+  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
+  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
 
 }
 
@@ -174,15 +182,15 @@ function leftSlideMove(piece, pieceX, pieceY) {
       ctx.drawImage(gameBoard, 0, 0);
       renderPieces();
       ctx.drawImage(piece.image, pieceX, pieceY);
-      pieceX -= 1;
+      pieceX -= 0.4;
       // stop condition
-      if ((Date.now() - startTime) > 500) {
+      if ((Date.now() - startTime) > 490) {
         bluePiece3.x = pieceX;
         clearInterval(slideInterval);
       }
     };
 
-  }(), 10)
+  }(), 0)
 };
 
 function rightSlideMove(piece, pieceX, pieceY) {
@@ -195,15 +203,15 @@ function rightSlideMove(piece, pieceX, pieceY) {
       ctx.drawImage(gameBoard, 0, 0);
       renderPieces();
       ctx.drawImage(piece.image, pieceX, pieceY);
-      pieceX += 1;
+      pieceX += 0.4;
       // stop condition
-      if ((Date.now() - startTime) > 500) {
+      if ((Date.now() - startTime) > 490) {
         bluePiece3.x = pieceX;
         clearInterval(slideInterval);
       }
     };
 
-  }(), 10)
+  }(), 0)
 };
 
 
@@ -258,31 +266,8 @@ canvas.addEventListener('click', function () {
 
 }, false);
 
-document.onkeyup = function(e) {
-  switch (e.keyCode) {
-      case 37:
-          leftSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-          break;
-      case 38:
-          upSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-          break;
-      case 39:
-          rightSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-          break;
-      case 40:
-          downSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-          break;
-const die = document.getElementById("die1")
 
-die.addEventListener('click', function () {
-  console.log("click worked")
-  var x = bluePiece3.x, y = bluePiece3.y;
-
-  rightSlideMove(bluePiece3, x, y);
-
-}, false);
-
-document.onkeydown = function (e) {
+document.onkeyup = function (e) {
   switch (e.keyCode) {
     case 37:
       leftSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
@@ -300,4 +285,4 @@ document.onkeydown = function (e) {
 };
 
 
-  }}
+  
