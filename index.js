@@ -182,15 +182,15 @@ function leftSlideMove(piece, pieceX, pieceY) {
       ctx.drawImage(gameBoard, 0, 0);
       renderPieces();
       ctx.drawImage(piece.image, pieceX, pieceY);
-      pieceX -= 1;
+      pieceX -= 0.4;
       // stop condition
-      if ((Date.now() - startTime) > 500) {
+      if ((Date.now() - startTime) > 490) {
         bluePiece3.x = pieceX;
         clearInterval(slideInterval);
       }
     };
 
-  }(), 10)
+  }(), 0)
 };
 
 function rightSlideMove(piece, pieceX, pieceY) {
@@ -203,15 +203,15 @@ function rightSlideMove(piece, pieceX, pieceY) {
       ctx.drawImage(gameBoard, 0, 0);
       renderPieces();
       ctx.drawImage(piece.image, pieceX, pieceY);
-      pieceX += 1;
+      pieceX += 0.4;
       // stop condition
-      if ((Date.now() - startTime) > 500) {
+      if ((Date.now() - startTime) > 490) {
         bluePiece3.x = pieceX;
         clearInterval(slideInterval);
       }
     };
 
-  }(), 10)
+  }(), 0)
 };
 
 
