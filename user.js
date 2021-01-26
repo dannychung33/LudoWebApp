@@ -85,6 +85,10 @@ PossibleMovements = {
 module.exports = class User {
   constructor(color) {
     this.color = color;
+<<<<<<< HEAD
+=======
+    this.type = "bot";
+>>>>>>> 92667d4208e6cb536bcad3a62112bf156575f85d
     this.gamePieces = [new GamePiece(color), new GamePiece(color), new GamePiece(color), new GamePiece(color)];
     switch (color) {
       case "green":
@@ -174,4 +178,12 @@ module.exports = class User {
 
   }
 
+<<<<<<< HEAD
+=======
+  //function that allows the human to move
+  human_move(){
+    
+  }
+
+>>>>>>> 92667d4208e6cb536bcad3a62112bf156575f85d
 }
