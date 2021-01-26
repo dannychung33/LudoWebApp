@@ -195,3 +195,16 @@ body {
 canvas {
   padding-left: 200px;
 }
+.button {
+  color: red;
+  background-color: black;
+  }
+
+  .payload {
+  color:black;
+  background-color: white
+  }
+
+  .hidden {
+  display: none;
+  }

@@ -3,6 +3,18 @@ console.log(canvas.childNodes)
 const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = innerHeight;
+"use strict";
+var button
+var payload
+function togglePayload() {
+  payload.classList.toggle('hidden');
+}
+function init() {
+  button = document.querySelector('.button')
+  payload = document.querySelector('.payload')
+  button.onclick = togglePayload;
+}
+document.addEventListener("DOMContentLoaded", init, false);
 alert("Click on canvas for left, click on dice for right, up and down keys for up and down")
 console.log(canvas);
 console.log(ctx);
@@ -260,8 +272,32 @@ document.onkeyup = function(e) {
       case 40:
           downSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
           break;
+const die = document.getElementById("die1")
+
+die.addEventListener('click', function () {
+  console.log("click worked")
+  var x = bluePiece3.x, y = bluePiece3.y;
+
+  rightSlideMove(bluePiece3, x, y);
+
+}, false);
+
+document.onkeydown = function (e) {
+  switch (e.keyCode) {
+    case 37:
+      leftSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
+    case 38:
+      upSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
+    case 39:
+      rightSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
+    case 40:
+      downSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
   }
 };
 
 
-
+  }}
