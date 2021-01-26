@@ -170,9 +170,6 @@ module.exports = class User {
       console.log("we will have to pass you");
       return;
     }
-
-
-
   }
 
   write() {
