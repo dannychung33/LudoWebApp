@@ -1,5 +1,5 @@
 const Game = require('./game')
 
-modeule.exports = class GameInit {
+module.exports = class GameInit {
 
 }
