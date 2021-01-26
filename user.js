@@ -170,9 +170,8 @@ module.exports = class User {
       console.log("we will have to pass you");
       return;
     }
+    //if it gets here without returning: the user have at least a move available. this is where it diverge to ask for a move from user or execute automatically for a bot.
+
   }
 
-  write() {
-    console.log('i am user')
-  }
 }

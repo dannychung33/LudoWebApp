@@ -7,8 +7,8 @@ function rollDice() {
     dice.classList.toggle("reRoll");
 
     console.log(result);
-	
-   
+
+    return result
 }
 
 dice.addEventListener("click", rollDice);
