@@ -15,7 +15,7 @@ function init() {
   button.onclick = togglePayload;
 }
 document.addEventListener("DOMContentLoaded", init, false);
-alert("Click on canvas for left, click on dice for right, up and down keys for up and down")
+//alert("Click on canvas for left, click on dice for right, up and down keys for up and down")
 console.log(canvas);
 console.log(ctx);
 
@@ -102,7 +102,9 @@ let yellowPiece4 = {
   y: 490
 }
 
-yellowPiece4.image.addEventListener('load', function () {
+
+preloadFloorplan = function(){
+yellowPiece1.image.onload = function () {
   // execute drawImage statements here
   ctx.drawImage(gameBoard, 0, 0);
 
@@ -124,25 +126,30 @@ yellowPiece4.image.addEventListener('load', function () {
   ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
   ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
 
-}, false);
-
+}
+}
+preloadFloorplan()
 gameBoard.src = "./assets/LudoBoard750x750.png";
 bluePiece1.image.src = "./assets/BluePiece96x96.png";
 bluePiece2.image.src = "./assets/BluePiece96x96.png";
 bluePiece3.image.src = "./assets/BluePiece96x96.png";
 bluePiece4.image.src = "./assets/BluePiece96x96.png";
-redPiece1.image.src = "./assets/RedPiece96x96.png";
-redPiece2.image.src = "./assets/RedPiece96x96.png";
-redPiece3.image.src = "./assets/RedPiece96x96.png";
-redPiece4.image.src = "./assets/RedPiece96x96.png";
+
 greenPiece1.image.src = "./assets/GreenPiece96x96.png";
 greenPiece2.image.src = "./assets/GreenPiece96x96.png";
 greenPiece3.image.src = "./assets/GreenPiece96x96.png";
 greenPiece4.image.src = "./assets/GreenPiece96x96.png";
-yellowPiece1.image.rc = "./assets/YellowPiece96x96.png";
+
+redPiece1.image.src = "./assets/RedPiece96x96.png";
+redPiece2.image.src = "./assets/RedPiece96x96.png";
+redPiece3.image.src = "./assets/RedPiece96x96.png";
+redPiece4.image.src = "./assets/RedPiece96x96.png";
+
+yellowPiece1.image.src = "./assets/YellowPiece96x96.png";
 yellowPiece2.image.src = "./assets/YellowPiece96x96.png";
 yellowPiece3.image.src = "./assets/YellowPiece96x96.png";
 yellowPiece4.image.src = "./assets/YellowPiece96x96.png";
+
 
 function renderPieces() {
   ctx.drawImage(bluePiece1.image, bluePiece1.x, bluePiece1.y);
@@ -259,14 +266,6 @@ canvas.addEventListener('click', function () {
 
 }, false);
 
-
-die.addEventListener('click', function () {
-  console.log("click worked")
-  var x = bluePiece3.x, y = bluePiece3.y;
-
-  rightSlideMove(bluePiece3, x, y);
-
-}, false);
 
 document.onkeyup = function (e) {
   switch (e.keyCode) {
