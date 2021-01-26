@@ -37,7 +37,10 @@ module.exports = class Human extends User {
         break;
     }
   }
-  getMove() {
-
+  getMove(possible_moves) {
+    for (let i = 0; i < possible_moves.length; i++) {
+      // asume the highlight action takes a piece and highlight that piece
+      highlight(possible_moves[i])
+    }
   }
 }
