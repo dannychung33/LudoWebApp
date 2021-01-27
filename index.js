@@ -1,4 +1,5 @@
 const canvas = document.querySelector('canvas');
+import highlight from './highlight';
 import { drawLeftLine } from './pathDrawer.js';
 console.log(canvas.childNodes)
 export const ctx = canvas.getContext('2d');
@@ -7,6 +8,8 @@ canvas.height = innerHeight;
 "use strict";
 var button
 var payload
+// import { hightlight } from './highlight.js'
+// console.log('does it print', highlight(['b1']))
 function togglePayload() {
   payload.classList.toggle('hidden');
 }
@@ -318,5 +321,8 @@ document.onkeyup = function (e) {
   }
 };
 
-
+export let idToPiece = {
+  b1: bluePiece1, b2: bluePiece2, b3: bluePiece3,
+  b4: bluePiece4, r1: redPiece1, r3: redPiece3, r4: redPiece4, r2: redPiece2, y1: yellowPiece1, y2: yellowPiece2, y3: yellowPiece3, y4: yellowPiece4, g1: greenPiece1, g4: greenPiece4, g3: greenPiece3, g2: greenPiece2
+}
 
