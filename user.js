@@ -85,11 +85,8 @@ PossibleMovements = {
 module.exports = class User {
   constructor(color) {
     this.color = color;
-<<<<<<< HEAD
-=======
     this.type = "bot";
->>>>>>> 92667d4208e6cb536bcad3a62112bf156575f85d
-    this.gamePieces = [new GamePiece(color), new GamePiece(color), new GamePiece(color), new GamePiece(color)];
+    this.gamePieces = [new GamePiece(color, color[0] + '1'), new GamePiece(color, color[0] + '2'), new GamePiece(color, color[0] + '3'), new GamePiece(color, color[0] + '4')];
     switch (color) {
       case "green":
         this.start_global_id = 1;
@@ -178,12 +175,9 @@ module.exports = class User {
 
   }
 
-<<<<<<< HEAD
-=======
   //function that allows the human to move
-  human_move(){
-    
+  human_move() {
+
   }
 
->>>>>>> 92667d4208e6cb536bcad3a62112bf156575f85d
 }

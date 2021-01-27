@@ -24,12 +24,14 @@ const gameBoard = new Image();
 let bluePiece1 = {
   image: new Image(),
   id: 'b1',
+  color: 'blue',
   x: 495,
   y: 620
 }
 let bluePiece2 = {
   image: new Image(),
   id: 'b2',
+  color: 'blue',
   x: 630,
   y: 620
 }
@@ -37,83 +39,98 @@ let bluePiece3 = {
   image: new Image(),
   id: 'b3',
   x: 677,
+  color: 'blue',
+  x: 678,
   y: 375
 }
 let bluePiece4 = {
   image: new Image(),
   id: 'b4',
+  color: 'blue',
   x: 495,
   y: 490
 }
 let greenPiece1 = {
   image: new Image(),
   id: 'g1',
+  color: 'green',
   x: 25,
   y: 30
 }
 let greenPiece2 = {
   image: new Image(),
   id: 'g2',
+  color: 'green',
   x: 25,
   y: 160
 }
 let greenPiece3 = {
   image: new Image(),
   id: 'g3',
+  color: 'green',
   x: 155,
   y: 30
 }
 let greenPiece4 = {
   image: new Image(),
   id: 'g4',
+  color: 'green',
   x: 155,
   y: 160
 }
 let redPiece1 = {
   image: new Image(),
   id: 'r1',
+  color: 'red',
   x: 495,
   y: 30
 }
 let redPiece2 = {
   image: new Image(),
   id: 'r2',
+  color: 'red',
   x: 495,
   y: 160
 }
 let redPiece3 = {
   image: new Image(),
   id: 'r3',
+  color: 'red',
   x: 630,
   y: 30
 }
 let redPiece4 = {
   image: new Image(),
   id: 'r4',
+  color: 'red',
   x: 630,
   y: 160
 }
 let yellowPiece1 = {
   image: new Image(),
   id: 'y1',
+  color: 'yellow',
   x: 159,
   y: 621
 }
 let yellowPiece2 = {
   image: new Image(),
   id: 'y2',
+  color: 'yellow',
   x: 24,
   y: 621
 }
 let yellowPiece3 = {
   image: new Image(),
   id: 'y3',
+  color: 'yellow',
   x: 24,
   y: 490
 }
 let yellowPiece4 = {
   image: new Image(),
   id: 'y4',
+  color: 'yellow',
   x: 159,
   y: 490
 }

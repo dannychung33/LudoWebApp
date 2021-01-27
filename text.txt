@@ -152,3 +152,10 @@ for loop which item is in currentplayer but not in finalresult
 glodaid = [
   'g' :[1,2,3,4,5,6]
 ]
+// Danny:
+function purpose: highlight the pieces that can be moved, the parameter that is passed in will be an array of id
+example: [y1, y4]
+this means yellowPiece1 and yellowPiece4 needs to be highlighted
+Note: these IDs are in the object itself, we added the id: see index.js for details
+  You can consider adding a class and the corresponding class css will make the object glow. and removing the glow/class when a user clicks on one of the object that is in the array, (meaning that user has chosen an object to move)
+  the function will return the id of the object that the user clicked on
