@@ -85,7 +85,8 @@ PossibleMovements = {
 module.exports = class User {
   constructor(color) {
     this.color = color;
-    this.gamePieces = [new GamePiece(color), new GamePiece(color), new GamePiece(color), new GamePiece(color)];
+    this.type = "bot";
+    this.gamePieces = [new GamePiece(color, color[0] + '1'), new GamePiece(color, color[0] + '2'), new GamePiece(color, color[0] + '3'), new GamePiece(color, color[0] + '4')];
     switch (color) {
       case "green":
         this.start_global_id = 1;
@@ -171,6 +172,11 @@ module.exports = class User {
       return;
     }
     //if it gets here without returning: the user have at least a move available. this is where it diverge to ask for a move from user or execute automatically for a bot.
+
+  }
+
+  //function that allows the human to move
+  human_move() {
 
   }
 

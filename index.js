@@ -1,5 +1,5 @@
 const canvas = document.querySelector('canvas');
-import {drawLeftLine} from './pathDrawer.js';
+import { drawLeftLine } from './pathDrawer.js';
 console.log(canvas.childNodes)
 export const ctx = canvas.getContext('2d');
 canvas.width = 800;
@@ -24,126 +24,141 @@ const gameBoard = new Image();
 
 let bluePiece1 = {
   image: new Image(),
+  id: 'b1',
   color: 'blue',
   x: 495,
   y: 620
 }
 let bluePiece2 = {
   image: new Image(),
+  id: 'b2',
   color: 'blue',
   x: 630,
   y: 620
 }
 let bluePiece3 = {
   image: new Image(),
+  id: 'b3',
   color: 'blue',
   x: 678,
   y: 375
 }
 let bluePiece4 = {
   image: new Image(),
+  id: 'b4',
   color: 'blue',
   x: 495,
   y: 490
 }
 let greenPiece1 = {
   image: new Image(),
+  id: 'g1',
   color: 'green',
   x: 25,
   y: 30
 }
 let greenPiece2 = {
   image: new Image(),
+  id: 'g2',
   color: 'green',
   x: 25,
   y: 160
 }
 let greenPiece3 = {
   image: new Image(),
+  id: 'g3',
   color: 'green',
   x: 155,
   y: 30
 }
 let greenPiece4 = {
   image: new Image(),
+  id: 'g4',
   color: 'green',
   x: 155,
   y: 160
 }
 let redPiece1 = {
   image: new Image(),
+  id: 'r1',
   color: 'red',
   x: 495,
   y: 30
 }
 let redPiece2 = {
   image: new Image(),
+  id: 'r2',
   color: 'red',
   x: 495,
   y: 160
 }
 let redPiece3 = {
   image: new Image(),
+  id: 'r3',
   color: 'red',
   x: 630,
   y: 30
 }
 let redPiece4 = {
   image: new Image(),
+  id: 'r4',
   color: 'red',
   x: 630,
   y: 160
 }
 let yellowPiece1 = {
   image: new Image(),
+  id: 'y1',
   color: 'yellow',
   x: 159,
   y: 621
 }
 let yellowPiece2 = {
   image: new Image(),
+  id: 'y2',
   color: 'yellow',
   x: 24,
   y: 621
 }
 let yellowPiece3 = {
   image: new Image(),
+  id: 'y3',
   color: 'yellow',
   x: 24,
   y: 490
 }
 let yellowPiece4 = {
   image: new Image(),
+  id: 'y4',
   color: 'yellow',
   x: 159,
   y: 490
 }
 
+function preloadFloorplan() {
+  yellowPiece4.image.onload = function () {
+    // execute drawImage statements here
+    ctx.drawImage(gameBoard, 0, 0);
 
-function preloadFloorplan(){
-yellowPiece4.image.onload = function () {
-  // execute drawImage statements here
-  ctx.drawImage(gameBoard, 0, 0);
+    ctx.drawImage(bluePiece1.image, bluePiece1.x, bluePiece1.y);
+    ctx.drawImage(bluePiece2.image, bluePiece2.x, bluePiece2.y);
+    // First move blue
+    ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
+    ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
+    ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
+    ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
+    ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
+    ctx.drawImage(greenPiece4.image, greenPiece4.x, greenPiece4.y);
+    ctx.drawImage(redPiece1.image, redPiece1.x, redPiece1.y);
+    ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
+    ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
+    ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
+    ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
+    ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
+    ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
+    ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
 
-  ctx.drawImage(bluePiece1.image, bluePiece1.x, bluePiece1.y);
-  ctx.drawImage(bluePiece2.image, bluePiece2.x, bluePiece2.y);
-  // First move blue
-  ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
-  ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
-  ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
-  ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
-  ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
-  ctx.drawImage(greenPiece4.image, greenPiece4.x, greenPiece4.y);
-  ctx.drawImage(redPiece1.image, redPiece1.x, redPiece1.y);
-  ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
-  ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
-  ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
-  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
-  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
-  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
-  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
-
-}
+  }
 }
 preloadFloorplan()
 gameBoard.src = "./assets/LudoBoard750x750.png";
@@ -311,4 +326,4 @@ document.onkeyup = function (e) {
 };
 
 
-  
+
