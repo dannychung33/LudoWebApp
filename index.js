@@ -183,31 +183,68 @@ yellowPiece2.image.src = "./assets/YellowPiece96x96.png";
 yellowPiece3.image.src = "./assets/YellowPiece96x96.png";
 yellowPiece4.image.src = "./assets/YellowPiece96x96.png";
 
-
-function renderPieces() {
+// renders pieces that are not "moving"
+function renderOtherPieces(movingPiece) {
+  if(movingPiece !== bluePiece1){
   ctx.drawImage(bluePiece1.image, bluePiece1.x, bluePiece1.y);
-  ctx.drawImage(bluePiece2.image, bluePiece2.x, bluePiece2.y);
-  // First move blue
-  //ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
-  ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
-  ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
-  ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
-  ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
-  ctx.drawImage(greenPiece4.image, greenPiece4.x, greenPiece4.y);
-  ctx.drawImage(redPiece1.image, redPiece1.x, redPiece1.y);
-  ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
-  ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
-  ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
-  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
-  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
-  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
-  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
+  }
+  if(movingPiece !== bluePiece2){
+    ctx.drawImage(bluePiece2.image, bluePiece2.x, bluePiece2.y);
+  }
+  if(movingPiece !== bluePiece3){
+    ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
+  }
+  if(movingPiece !== bluePiece4){
+    ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
+  }
+
+  if(movingPiece !== redPiece1){
+    ctx.drawImage(redPiece1.image, redPiece1.x, redPiece1.y);
+  }
+  if(movingPiece !== redPiece2){
+    ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
+  }
+  if(movingPiece !== redPiece3){
+    ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
+  }
+  if(movingPiece !== redPiece4){
+    ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
+  }
+
+  if(movingPiece !== greenPiece1){
+    ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
+  }
+  if(movingPiece !== greenPiece2){
+    ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
+  }
+  if(movingPiece !== greenPiece3){
+    ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
+  }
+  if(movingPiece !== greenPiece4){
+    ctx.drawImage(greenPiece4.image, greenPiece4.x, greenPiece4.y);
+  }
+
+  if(movingPiece !== yellowPiece1){
+    ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
+  }
+  if(movingPiece !== yellowPiece2){
+    ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
+  }
+  if(movingPiece !== yellowPiece3){
+    ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
+  }
+  if(movingPiece !== yellowPiece4){
+    ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
+  }
+
 
 }
 // Draw path method call
 drawLeftLine(750, 425, 400, 425);
 
-function leftSlideMove(piece, pieceX, pieceY) {
+function leftSlideMove(piece) {
+  let pieceX = piece.x;
+  let pieceY = piece.y;
   let startTime = new Date().getTime();
   let slideInterval = setInterval(function animate() {
     return function () {
@@ -216,13 +253,13 @@ function leftSlideMove(piece, pieceX, pieceY) {
       ctx.clearRect(pieceX, pieceY, 96, 96);
 
       ctx.drawImage(gameBoard, 0, 0);
-      renderPieces()
+      renderOtherPieces(piece)
 
       ctx.drawImage(piece.image, pieceX, pieceY);
       pieceX -= 0.4;
       // stop condition
       if ((new Date().getTime() - startTime) > 490) {
-        bluePiece3.x = pieceX;
+        piece.x = pieceX;
         clearInterval(slideInterval);
       }
     };
@@ -230,7 +267,9 @@ function leftSlideMove(piece, pieceX, pieceY) {
   }(), 0)
 };
 
-function rightSlideMove(piece, pieceX, pieceY) {
+function rightSlideMove(piece) {
+  let pieceX = piece.x;
+  let pieceY = piece.y;
   let startTime = new Date().getTime();
   let slideInterval = setInterval(function animate() {
     return function () {
@@ -238,12 +277,12 @@ function rightSlideMove(piece, pieceX, pieceY) {
       ctx.clearRect(pieceX, pieceY, 96, 96);
 
       ctx.drawImage(gameBoard, 0, 0);
-      renderPieces();
+      renderPieces(piece);
       ctx.drawImage(piece.image, pieceX, pieceY);
       pieceX += 0.4;
       // stop condition
       if ((new Date().getTime() - startTime) > 490) {
-        bluePiece3.x = pieceX;
+        piece.x = pieceX;
         clearInterval(slideInterval);
       }
     };
@@ -252,20 +291,22 @@ function rightSlideMove(piece, pieceX, pieceY) {
 };
 
 
-function upSlideMove(piece, pieceX, pieceY) {
+function upSlideMove(piece) {
   let startTime = Date.now();
+  let pieceX = piece.x;
+  let pieceY = piece.y;
   let slideInterval = setInterval(function animate() {
     return function () {
       //requestAnimationFrame(animate);
       ctx.clearRect(pieceX, pieceY, 96, 96);
 
       ctx.drawImage(gameBoard, 0, 0);
-      renderPieces();
+      renderPieces(piece);
       ctx.drawImage(piece.image, pieceX, pieceY);
       pieceY -= 1;
       // stop condition
       if ((Date.now() - startTime) > 500) {
-        bluePiece3.y = pieceY;
+        piece.y = pieceY;
         clearInterval(slideInterval);
       }
     };
@@ -273,20 +314,22 @@ function upSlideMove(piece, pieceX, pieceY) {
   }(), 10)
 };
 
-function downSlideMove(piece, pieceX, pieceY) {
+function downSlideMove(piece) {
   let startTime = Date.now();
+  let pieceX = piece.x;
+  let pieceY = piece.y;
   let slideInterval = setInterval(function animate() {
     return function () {
       //requestAnimationFrame(animate);
       ctx.clearRect(pieceX, pieceY, 96, 96);
 
       ctx.drawImage(gameBoard, 0, 0);
-      renderPieces();
+      renderPieces(piece);
       ctx.drawImage(piece.image, pieceX, pieceY);
       pieceY += 1;
       // stop condition
       if ((Date.now() - startTime) > 500) {
-        bluePiece3.y = pieceY;
+        piece.y = pieceY;
         clearInterval(slideInterval);
       }
     };
@@ -328,8 +371,6 @@ document.onkeyup = function (e) {
   }
 };
 
-highlight(bluePiece3);
-//unHighlight(bluePiece1);
 
 function highlight(gamePiece) {
   if (gamePiece.color == 'blue') {
@@ -378,10 +419,12 @@ function unHighlight(gamePiece) {
 }
 
 function startPlay(gamePiece){
-  switch(gamePiece.id){
-    case "b1": ctx.save(); clearRect(0,0); ctx.drawImage(100,100); ctx.restore();
-  }
+  console.log(gamePiece.y)
+  ctx.clearRect(gamePiece.x, gamePiece.y, 96, 96);
+  ctx.drawImage(gamePiece.image, 440, 490);
+  gamePiece.image.src = "assets/GreenPiece96x96.png";
 }
-
-
-
+leftSlideMove(redPiece2);
+startPlay(greenPiece4)
+//highlight(bluePiece3);
+//unHighlight(bluePiece1);
