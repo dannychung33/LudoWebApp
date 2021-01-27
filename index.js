@@ -39,7 +39,6 @@ let bluePiece2 = {
 let bluePiece3 = {
   image: new Image(),
   id: 'b3',
-  x: 677,
   color: 'blue',
   x: 678,
   y: 375
@@ -136,7 +135,6 @@ let yellowPiece4 = {
   y: 490
 }
 
-
 function preloadFloorplan() {
   yellowPiece4.image.onload = function () {
     // execute drawImage statements here
@@ -207,62 +205,6 @@ function renderPieces() {
 }
 
 drawLeftLine(750, 425, 400, 425);
-
-function leftSlideMove(piece, pieceX, pieceY) {
-  let startTime = new Date().getTime();
-  let slideInterval = setInterval(function animate() {
-    return function () {
-      //requestAnimationFrame(animate);
-      ctx.clearRect(pieceX, pieceY, 96, 96);
-
-      ctx.drawImage(gameBoard, 0, 0);
-      renderPieces();
-      ctx.drawImage(piece.image, pieceX, pieceY);
-      pieceX -= 0.4;
-      // stop condition
-      if ((new Date().getTime() - startTime) > 490) {
-        bluePiece3.x = pieceX;
-        clearInterval(slideInterval);
-      }
-    };
-
-  }(), 0)
-};
-
-function rightSlideMove(piece, pieceX, pieceY) {
-  let startTime = new Date().getTime();
-  let slideInterval = setInterval(function animate() {
-    return function () {
-      //requestAnimationFrame(animate);
-      ctx.clearRect(pieceX, pieceY, 96, 96);
-
-      ctx.drawImage(gameBoard, 0, 0);
-
-    }
-  })
-}
-
-
-function renderPieces() {
-  ctx.drawImage(bluePiece1.image, bluePiece1.x, bluePiece1.y);
-  ctx.drawImage(bluePiece2.image, bluePiece2.x, bluePiece2.y);
-  // First move blue
-  //ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
-  ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
-  ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
-  ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
-  ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
-  ctx.drawImage(greenPiece4.image, greenPiece4.x, greenPiece4.y);
-  ctx.drawImage(redPiece1.image, redPiece1.x, redPiece1.y);
-  ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
-  ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
-  ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
-  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
-  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
-  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
-  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
-
-}
 
 function leftSlideMove(piece, pieceX, pieceY) {
   let startTime = new Date().getTime();
