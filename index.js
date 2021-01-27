@@ -1,6 +1,7 @@
 const canvas = document.querySelector('canvas');
+import {drawLeftLine} from './pathDrawer.js';
 console.log(canvas.childNodes)
-const ctx = canvas.getContext('2d');
+export const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = innerHeight;
 "use strict";
@@ -119,7 +120,7 @@ let yellowPiece4 = {
 }
 
 
-preloadFloorplan = function(){
+function preloadFloorplan(){
 yellowPiece4.image.onload = function () {
   // execute drawImage statements here
   ctx.drawImage(gameBoard, 0, 0);
@@ -187,6 +188,8 @@ function renderPieces() {
   ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
 
 }
+
+drawLeftLine(750, 425, 400, 425);
 
 function leftSlideMove(piece, pieceX, pieceY) {
   let startTime = new Date().getTime();
