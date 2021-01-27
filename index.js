@@ -161,6 +161,7 @@ function preloadFloorplan() {
   }
 }
 preloadFloorplan()
+
 gameBoard.src = "./assets/LudoBoard750x750.png";
 bluePiece1.image.src = "./assets/BluePiece96x96.png";
 bluePiece2.image.src = "./assets/BluePiece96x96.png";
@@ -211,10 +212,12 @@ function leftSlideMove(piece, pieceX, pieceY) {
   let slideInterval = setInterval(function animate() {
     return function () {
       //requestAnimationFrame(animate);
+
       ctx.clearRect(pieceX, pieceY, 96, 96);
 
       ctx.drawImage(gameBoard, 0, 0);
-      renderPieces();
+      renderPieces()
+
       ctx.drawImage(piece.image, pieceX, pieceY);
       pieceX -= 0.4;
       // stop condition
@@ -324,6 +327,61 @@ document.onkeyup = function (e) {
       break;
   }
 };
+
+highlight(bluePiece3);
+//unHighlight(bluePiece1);
+
+function highlight(gamePiece) {
+  if (gamePiece.color == 'blue') {
+      ctx.clearRect(gamePiece.x, gamePiece.y, 96, 96);
+      ctx.drawImage(gamePiece.image, gamePiece.x, gamePiece.y);
+      gamePiece.image.src = "assets/BluePiece96x96Transparent.png";
+  }
+  if (gamePiece.color == 'red') {
+      ctx.clearRect(gamePiece.x, gamePiece.y, 96, 96);
+      ctx.drawImage(gamePiece.image, gamePiece.x, gamePiece.y);
+      gamePiece.image.src = "assets/RedPiece96x96Transparent.png";
+  }
+  if (gamePiece.color == 'yellow') {
+      ctx.clearRect(gamePiece.x, gamePiece.y, 96, 96);
+      ctx.drawImage(gamePiece.image, gamePiece.x, gamePiece.y);
+      gamePiece.image.src = "assets/YellowPiece96x96Transparent.png";
+  }
+  if (gamePiece.color == 'green') {
+      ctx.clearRect(gamePiece.x, gamePiece.y, 96, 96);
+      ctx.drawImage(gamePiece.image, gamePiece.x, gamePiece.y);
+      gamePiece.image.src = "assets/GreenPiece96x96Transparent.png";
+  }
+}
+
+function unHighlight(gamePiece) {
+  if (gamePiece.color == 'blue') {
+      ctx.clearRect(gamePiece.x, gamePiece.y, 96, 96);
+      ctx.drawImage(gamePiece.image, gamePiece.x, gamePiece.y);
+      gamePiece.image.src = "assets/BluePiece96x96.png";
+  }
+  if (gamePiece.color == 'red') {
+      ctx.clearRect(gamePiece.x, gamePiece.y, 96, 96);
+      ctx.drawImage(gamePiece.image, gamePiece.x, gamePiece.y);
+      gamePiece.image.src = "assets/RedPiece96x96.png";
+  }
+  if (gamePiece.color == 'yellow') {
+      ctx.clearRect(gamePiece.x, gamePiece.y, 96, 96);
+      ctx.drawImage(gamePiece.image, gamePiece.x, gamePiece.y);
+      gamePiece.image.src = "assets/YellowPiece96x96.png";
+  }
+  if (gamePiece.color == 'green') {
+      ctx.clearRect(gamePiece.x, gamePiece.y, 96, 96);
+      ctx.drawImage(gamePiece.image, gamePiece.x, gamePiece.y);
+      gamePiece.image.src = "assets/GreenPiece96x96.png";
+  }
+}
+
+function startPlay(gamePiece){
+  switch(gamePiece.id){
+    case "b1": ctx.save(); clearRect(0,0); ctx.drawImage(100,100); ctx.restore();
+  }
+}
 
 
 

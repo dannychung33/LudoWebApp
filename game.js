@@ -43,10 +43,11 @@ module.exports = class Game {
     play_game() {
 
         this.choose_color();
-
+        // check if game ended 
         while (this.final_result.length != 3) {
             if (this.current_player_index > 3) {
                 this.current_player_index = 0;
+                
             }
 
             let current_player = this.Users[this.current_player_index]
