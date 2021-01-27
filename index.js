@@ -3,7 +3,7 @@ import {drawLeftLine} from './pathDrawer.js';
 console.log(canvas.childNodes)
 export const ctx = canvas.getContext('2d');
 canvas.width = 800;
-canvas.height = innerHeight;
+canvas.height = 800;
 "use strict";
 var button
 var payload
@@ -188,7 +188,7 @@ function renderPieces() {
   ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
 
 }
-
+// Draw path method call
 drawLeftLine(750, 425, 400, 425);
 
 function leftSlideMove(piece, pieceX, pieceY) {
@@ -277,8 +277,15 @@ function downSlideMove(piece, pieceX, pieceY) {
 };
 
 let delay = 0;
-canvas.addEventListener('click', function () {
-  console.log("click worked")
+function getClickPosition(e) {
+  var xPosition = e.clientX;
+  var yPosition = e.clientY;
+  const coords = [xPosition, yPosition]
+  return coords;
+}
+canvas.addEventListener('click', function (e) {
+  const [xPos,yPos] = getClickPosition(e);
+  console.log("x: " + xPos, "y: " + yPos);
   var x = bluePiece3.x, y = bluePiece3.y;
 
   leftSlideMove(bluePiece3, x, y);
