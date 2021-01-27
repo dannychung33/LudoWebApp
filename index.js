@@ -1,5 +1,5 @@
 const canvas = document.querySelector('canvas');
-import {drawLeftLine} from './pathDrawer.js';
+import { drawLeftLine } from './pathDrawer.js';
 console.log(canvas.childNodes)
 export const ctx = canvas.getContext('2d');
 canvas.width = 800;
@@ -137,9 +137,8 @@ let yellowPiece4 = {
 }
 
 
-<<<<<<< HEAD
-preloadFloorplan = function () {
-  yellowPiece1.image.onload = function () {
+function preloadFloorplan() {
+  yellowPiece4.image.onload = function () {
     // execute drawImage statements here
     ctx.drawImage(gameBoard, 0, 0);
 
@@ -160,35 +159,8 @@ preloadFloorplan = function () {
     ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
     ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
     ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
+
   }
-  preloadFloorplan = function () {
-    yellowPiece4.image.onload = function () {
-      // execute drawImage statements here
-=======
-function preloadFloorplan(){
-yellowPiece4.image.onload = function () {
-  // execute drawImage statements here
-  ctx.drawImage(gameBoard, 0, 0);
-
-  ctx.drawImage(bluePiece1.image, bluePiece1.x, bluePiece1.y);
-  ctx.drawImage(bluePiece2.image, bluePiece2.x, bluePiece2.y);
-  // First move blue
-  ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
-  ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
-  ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
-  ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
-  ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
-  ctx.drawImage(greenPiece4.image, greenPiece4.x, greenPiece4.y);
-  ctx.drawImage(redPiece1.image, redPiece1.x, redPiece1.y);
-  ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
-  ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
-  ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
-  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
-  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
-  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
-  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
-
-}
 }
 preloadFloorplan()
 gameBoard.src = "./assets/LudoBoard750x750.png";
@@ -264,166 +236,145 @@ function rightSlideMove(piece, pieceX, pieceY) {
       //requestAnimationFrame(animate);
       ctx.clearRect(pieceX, pieceY, 96, 96);
 
->>>>>>> b9cd7ecf839d5580b5387b63f8cce214c8cade18
       ctx.drawImage(gameBoard, 0, 0);
 
     }
+  })
+}
+
+
+function renderPieces() {
+  ctx.drawImage(bluePiece1.image, bluePiece1.x, bluePiece1.y);
+  ctx.drawImage(bluePiece2.image, bluePiece2.x, bluePiece2.y);
+  // First move blue
+  //ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
+  ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
+  ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
+  ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
+  ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
+  ctx.drawImage(greenPiece4.image, greenPiece4.x, greenPiece4.y);
+  ctx.drawImage(redPiece1.image, redPiece1.x, redPiece1.y);
+  ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
+  ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
+  ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
+  ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
+  ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
+  ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
+  ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
+
+}
+
+function leftSlideMove(piece, pieceX, pieceY) {
+  let startTime = new Date().getTime();
+  let slideInterval = setInterval(function animate() {
+    return function () {
+      //requestAnimationFrame(animate);
+      ctx.clearRect(pieceX, pieceY, 96, 96);
+
+      ctx.drawImage(gameBoard, 0, 0);
+      renderPieces();
+      ctx.drawImage(piece.image, pieceX, pieceY);
+      pieceX -= 0.4;
+      // stop condition
+      if ((new Date().getTime() - startTime) > 490) {
+        bluePiece3.x = pieceX;
+        clearInterval(slideInterval);
+      }
+    };
+
+  }(), 0)
+};
+
+function rightSlideMove(piece, pieceX, pieceY) {
+  let startTime = new Date().getTime();
+  let slideInterval = setInterval(function animate() {
+    return function () {
+      //requestAnimationFrame(animate);
+      ctx.clearRect(pieceX, pieceY, 96, 96);
+
+      ctx.drawImage(gameBoard, 0, 0);
+      renderPieces();
+      ctx.drawImage(piece.image, pieceX, pieceY);
+      pieceX += 0.4;
+      // stop condition
+      if ((new Date().getTime() - startTime) > 490) {
+        bluePiece3.x = pieceX;
+        clearInterval(slideInterval);
+      }
+    };
+
+  }(), 0)
+};
+
+
+function upSlideMove(piece, pieceX, pieceY) {
+  let startTime = Date.now();
+  let slideInterval = setInterval(function animate() {
+    return function () {
+      //requestAnimationFrame(animate);
+      ctx.clearRect(pieceX, pieceY, 96, 96);
+
+      ctx.drawImage(gameBoard, 0, 0);
+      renderPieces();
+      ctx.drawImage(piece.image, pieceX, pieceY);
+      pieceY -= 1;
+      // stop condition
+      if ((Date.now() - startTime) > 500) {
+        bluePiece3.y = pieceY;
+        clearInterval(slideInterval);
+      }
+    };
+
+  }(), 10)
+};
+
+function downSlideMove(piece, pieceX, pieceY) {
+  let startTime = Date.now();
+  let slideInterval = setInterval(function animate() {
+    return function () {
+      //requestAnimationFrame(animate);
+      ctx.clearRect(pieceX, pieceY, 96, 96);
+
+      ctx.drawImage(gameBoard, 0, 0);
+      renderPieces();
+      ctx.drawImage(piece.image, pieceX, pieceY);
+      pieceY += 1;
+      // stop condition
+      if ((Date.now() - startTime) > 500) {
+        bluePiece3.y = pieceY;
+        clearInterval(slideInterval);
+      }
+    };
+
+  }(), 10)
+};
+
+let delay = 0;
+canvas.addEventListener('click', function () {
+  console.log("click worked")
+  var x = bluePiece3.x, y = bluePiece3.y;
+
+  leftSlideMove(bluePiece3, x, y);
+
+}, false);
+
+
+document.onkeyup = function (e) {
+  switch (e.keyCode) {
+    case 37:
+      leftSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
+    case 38:
+      upSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
+    case 39:
+      rightSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
+    case 40:
+      downSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
+      break;
   }
-  preloadFloorplan()
-  gameBoard.src = "./assets/LudoBoard750x750.png";
-  bluePiece1.image.src = "./assets/BluePiece96x96.png";
-  bluePiece2.image.src = "./assets/BluePiece96x96.png";
-  bluePiece3.image.src = "./assets/BluePiece96x96.png";
-  bluePiece4.image.src = "./assets/BluePiece96x96.png";
-
-  greenPiece1.image.src = "./assets/GreenPiece96x96.png";
-  greenPiece2.image.src = "./assets/GreenPiece96x96.png";
-  greenPiece3.image.src = "./assets/GreenPiece96x96.png";
-  greenPiece4.image.src = "./assets/GreenPiece96x96.png";
-
-  redPiece1.image.src = "./assets/RedPiece96x96.png";
-  redPiece2.image.src = "./assets/RedPiece96x96.png";
-  redPiece3.image.src = "./assets/RedPiece96x96.png";
-  redPiece4.image.src = "./assets/RedPiece96x96.png";
-
-  yellowPiece1.image.src = "./assets/YellowPiece96x96.png";
-  yellowPiece2.image.src = "./assets/YellowPiece96x96.png";
-  yellowPiece3.image.src = "./assets/YellowPiece96x96.png";
-  yellowPiece4.image.src = "./assets/YellowPiece96x96.png";
-
-
-  function renderPieces() {
-    ctx.drawImage(bluePiece1.image, bluePiece1.x, bluePiece1.y);
-    ctx.drawImage(bluePiece2.image, bluePiece2.x, bluePiece2.y);
-    // First move blue
-    //ctx.drawImage(bluePiece3.image, bluePiece3.x, bluePiece3.y);
-    ctx.drawImage(bluePiece4.image, bluePiece4.x, bluePiece4.y);
-    ctx.drawImage(greenPiece1.image, greenPiece1.x, greenPiece1.y);
-    ctx.drawImage(greenPiece2.image, greenPiece2.x, greenPiece2.y);
-    ctx.drawImage(greenPiece3.image, greenPiece3.x, greenPiece3.y);
-    ctx.drawImage(greenPiece4.image, greenPiece4.x, greenPiece4.y);
-    ctx.drawImage(redPiece1.image, redPiece1.x, redPiece1.y);
-    ctx.drawImage(redPiece2.image, redPiece2.x, redPiece2.y);
-    ctx.drawImage(redPiece3.image, redPiece3.x, redPiece3.y);
-    ctx.drawImage(redPiece4.image, redPiece4.x, redPiece4.y);
-    ctx.drawImage(yellowPiece1.image, yellowPiece1.x, yellowPiece1.y);
-    ctx.drawImage(yellowPiece2.image, yellowPiece2.x, yellowPiece2.y);
-    ctx.drawImage(yellowPiece3.image, yellowPiece3.x, yellowPiece3.y);
-    ctx.drawImage(yellowPiece4.image, yellowPiece4.x, yellowPiece4.y);
-
-  }
-
-  function leftSlideMove(piece, pieceX, pieceY) {
-    let startTime = new Date().getTime();
-    let slideInterval = setInterval(function animate() {
-      return function () {
-        //requestAnimationFrame(animate);
-        ctx.clearRect(pieceX, pieceY, 96, 96);
-
-        ctx.drawImage(gameBoard, 0, 0);
-        renderPieces();
-        ctx.drawImage(piece.image, pieceX, pieceY);
-        pieceX -= 0.4;
-        // stop condition
-        if ((new Date().getTime() - startTime) > 490) {
-          bluePiece3.x = pieceX;
-          clearInterval(slideInterval);
-        }
-      };
-
-    }(), 0)
-  };
-
-  function rightSlideMove(piece, pieceX, pieceY) {
-    let startTime = new Date().getTime();
-    let slideInterval = setInterval(function animate() {
-      return function () {
-        //requestAnimationFrame(animate);
-        ctx.clearRect(pieceX, pieceY, 96, 96);
-
-        ctx.drawImage(gameBoard, 0, 0);
-        renderPieces();
-        ctx.drawImage(piece.image, pieceX, pieceY);
-        pieceX += 0.4;
-        // stop condition
-        if ((new Date().getTime() - startTime) > 490) {
-          bluePiece3.x = pieceX;
-          clearInterval(slideInterval);
-        }
-      };
-
-    }(), 0)
-  };
-
-
-  function upSlideMove(piece, pieceX, pieceY) {
-    let startTime = Date.now();
-    let slideInterval = setInterval(function animate() {
-      return function () {
-        //requestAnimationFrame(animate);
-        ctx.clearRect(pieceX, pieceY, 96, 96);
-
-        ctx.drawImage(gameBoard, 0, 0);
-        renderPieces();
-        ctx.drawImage(piece.image, pieceX, pieceY);
-        pieceY -= 1;
-        // stop condition
-        if ((Date.now() - startTime) > 500) {
-          bluePiece3.y = pieceY;
-          clearInterval(slideInterval);
-        }
-      };
-
-    }(), 10)
-  };
-
-  function downSlideMove(piece, pieceX, pieceY) {
-    let startTime = Date.now();
-    let slideInterval = setInterval(function animate() {
-      return function () {
-        //requestAnimationFrame(animate);
-        ctx.clearRect(pieceX, pieceY, 96, 96);
-
-        ctx.drawImage(gameBoard, 0, 0);
-        renderPieces();
-        ctx.drawImage(piece.image, pieceX, pieceY);
-        pieceY += 1;
-        // stop condition
-        if ((Date.now() - startTime) > 500) {
-          bluePiece3.y = pieceY;
-          clearInterval(slideInterval);
-        }
-      };
-
-    }(), 10)
-  };
-
-  let delay = 0;
-  canvas.addEventListener('click', function () {
-    console.log("click worked")
-    var x = bluePiece3.x, y = bluePiece3.y;
-
-    leftSlideMove(bluePiece3, x, y);
-
-  }, false);
-
-
-  document.onkeyup = function (e) {
-    switch (e.keyCode) {
-      case 37:
-        leftSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-        break;
-      case 38:
-        upSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-        break;
-      case 39:
-        rightSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-        break;
-      case 40:
-        downSlideMove(bluePiece3, bluePiece3.x, bluePiece3.y);
-        break;
-    }
-  };
+};
 
 
 
