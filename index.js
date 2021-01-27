@@ -120,7 +120,7 @@ let yellowPiece4 = {
 
 
 preloadFloorplan = function(){
-yellowPiece1.image.onload = function () {
+yellowPiece4.image.onload = function () {
   // execute drawImage statements here
   ctx.drawImage(gameBoard, 0, 0);
 
@@ -189,7 +189,7 @@ function renderPieces() {
 }
 
 function leftSlideMove(piece, pieceX, pieceY) {
-  let startTime = Date.now();
+  let startTime = new Date().getTime();
   let slideInterval = setInterval(function animate() {
     return function () {
       //requestAnimationFrame(animate);
@@ -200,7 +200,7 @@ function leftSlideMove(piece, pieceX, pieceY) {
       ctx.drawImage(piece.image, pieceX, pieceY);
       pieceX -= 0.4;
       // stop condition
-      if ((Date.now() - startTime) > 490) {
+      if ((new Date().getTime() - startTime) > 490) {
         bluePiece3.x = pieceX;
         clearInterval(slideInterval);
       }
@@ -210,7 +210,7 @@ function leftSlideMove(piece, pieceX, pieceY) {
 };
 
 function rightSlideMove(piece, pieceX, pieceY) {
-  let startTime = Date.now();
+  let startTime = new Date().getTime();
   let slideInterval = setInterval(function animate() {
     return function () {
       //requestAnimationFrame(animate);
@@ -221,7 +221,7 @@ function rightSlideMove(piece, pieceX, pieceY) {
       ctx.drawImage(piece.image, pieceX, pieceY);
       pieceX += 0.4;
       // stop condition
-      if ((Date.now() - startTime) > 490) {
+      if ((new Date().getTime() - startTime) > 490) {
         bluePiece3.x = pieceX;
         clearInterval(slideInterval);
       }
