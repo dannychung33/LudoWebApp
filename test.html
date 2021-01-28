@@ -55,8 +55,8 @@
         this.add.image(400, 400, "gameboard");
 
         // The player and its settings
-        bp3 = this.add.sprite(100, 350, "bluePiece3");
-        bp1 = this.add.sprite(400, 700, "bluePiece1");
+        bp3 = this.add.sprite(500, 350, "bluePiece3");
+        //bp1 = this.add.sprite(400, 700, "bluePiece1");
         rp1 = this.add.sprite(400, 100, "redPiece1");
         //  Our player animations, turning, walking left and walking right.
         this.anims.create({
@@ -92,7 +92,7 @@
         this.physics.add.overlap(player, stars, collectStar, null, this);
 
         this.physics.add.collider(player, bombs, hitBomb, null, this);
-      
+
       */
       }
 
@@ -222,10 +222,27 @@
       function left(piece) {
         piece.x -= 2;
       }
+      function down(piece) {
+        piece.y += 2;
+      }
+      function up(piece) {
+        piece.y -= 2;
+      }
       // checks piece moves n spaces to the right
-      function moveRightValidate(row, startIndex, spacesMoved) {
+      function moveRightValidate(piece, row, startIndex, spacesMoved) {
         if (startIndex + spacesMoved < squares[row].length) {
-          if (bp3.x < squares[row][startIndex + spacesMoved].x) {
+          if (piece.x < squares[row][startIndex + spacesMoved].x) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      }
+      function moveDownValidate(piece, row, startIndex, spacesMoved) {
+        if (startIndex + spacesMoved < squares[row].length) {
+          if (piece.y < squares[row][startIndex + spacesMoved].y) {
             return true;
           } else {
             return false;
@@ -239,7 +256,8 @@
       console.log(squares[0][4].x);
 
       let count = 0;
-      let isMoving = true;
+      let isMovingRight = true;
+      let isMovingDown = true;
       function update() {
         if (gameOver) {
           return;
@@ -257,11 +275,16 @@
 
         // calls method to move right one space
 
-        if (isMoving) {
+        if (isMovingRight && count > 25) {
           // moves piece right, must use matching validate function to stop
           right(bp3);
+          // check squares for row and startIndex to make sense
           // params for moveValidate are row, startIndex, spacesMoved
-          isMoving = moveRightValidate(0, 1, 3);
+          isMovingRight = moveRightValidate(bp3, 4, 0, 2);
+        }
+        if (isMovingDown && count > 25) {
+          down(rp1);
+          isMovingDown = moveDownValidate(rp1, 13, 0, 5);
         }
         count++;
         /*
