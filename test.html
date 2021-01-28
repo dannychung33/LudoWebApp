@@ -6,7 +6,8 @@
     <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
     <style type="text/css">
       body {
-        margin: 0;
+        position: absolute;
+        margin-left: 100;
       }
     </style>
   </head>
@@ -41,7 +42,7 @@
       function preload() {
         this.load.image("gameboard", "assets/LudoBoard750x750.png");
         this.load.image("bluePiece3", "assets/BluePiece96x96.png");
-        this.load.image("star", "assets/star.png");
+        this.load.image("redPiece1", "assets/RedPiece96x96.png");
         this.load.image("bomb", "assets/bomb.png");
         this.load.spritesheet("dude", "assets/dude.png", {
           frameWidth: 32,
@@ -53,25 +54,9 @@
         //  A simple background for our game
         this.add.image(400, 400, "gameboard");
 
-        //  The platforms group contains the ground and the 2 ledges we can jump on
-        //s = this.physics.add.staticGroup();
-
-        //  Here we create the ground.
-        //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-        //platforms.create(400, 568, "ground").setScale(2).refreshBody();
-
-        //  Now let's create some ledges
-        //platforms.create(600, 400, "ground");
-        //platforms.create(50, 250, "ground");
-        //platforms.create(750, 220, "ground");
-
         // The player and its settings
-        player = this.add.sprite(100, 450, "bluePiece3");
-
-        //  Player physics properties. Give the little guy a slight bounce.
-        //player.setBounce(0.2);
-        //player.setCollideWorldBounds(true);
-
+        bp3 = this.add.sprite(100, 450, "bluePiece3");
+        rp1 = this.add.sprite(700, 450, "redPiece1");
         //  Our player animations, turning, walking left and walking right.
         this.anims.create({
           key: "left",
@@ -96,27 +81,7 @@
         //  Input Events
         cursors = this.input.keyboard.createCursorKeys();
 
-        //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
         /*
-        stars = this.physics.add.group({
-          key: "star",
-          repeat: 11,
-          setXY: { x: 12, y: 0, stepX: 70 },
-        });
-
-        stars.children.iterate(function (child) {
-          //  Give each star a slightly different bounce
-          child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-        });
-
-        bombs = this.physics.add.group();
-
-        //  The score
-        scoreText = this.add.text(16, 16, "score: 0", {
-          fontSize: "32px",
-          fill: "#000",
-        });
-
         //  Collide the player and the stars with the platforms
         this.physics.add.collider(player, platforms);
         this.physics.add.collider(stars, platforms);
@@ -129,36 +94,51 @@
       
       */
       }
-      function moveRight() {
-        player.x += 1;
-        if (player.x > 200) {
-          console.log("if");
-          player.x = 200;
-        }
-        if (player.x <= 400 && player.x >= 200) {
-          player.x = 400;
-        }
-      }
-      function moveLeft() {
-        player.x -= 1;
-        //player.world.x += player.x;
 
-        if (player.x < 100) {
-          console.log(player.x);
-          player.x = 100;
-        }
+      function moveRight(piece) {
+        piece.x += 1;
+      }
+      function moveLeft(piece) {
+        piece.x -= 1;
       }
 
       function update() {
         if (gameOver) {
           return;
         }
-        if (player.x < 200) {
-          moveRight();
+        // Each move is 50 px
+        if (bp3.x < 150) {
+          moveRight(bp3);
         }
-        if (player.x <= 400 && player.x >= 200) {
-          moveRight();
+        if (bp3.x >= 150 && bp3.x < 200) {
+          moveRight(bp3);
         }
+        if (bp3.x >= 200 && bp3.x < 250) {
+          moveRight(bp3);
+        }
+        if (bp3.x >= 250 && bp3.x < 300) {
+          moveRight(bp3);
+        }
+
+        if (rp1.x > 650) {
+          moveLeft(rp1);
+        }
+        if (rp1.x <= 650 && rp1.x > 600) {
+          moveLeft(rp1);
+        }
+        if (rp1.x <= 600 && rp1.x > 550) {
+          moveLeft(rp1);
+        }
+        if (rp1.x <= 550 && rp1.x > 500) {
+          moveLeft(rp1);
+        }
+
+        /*
+        if (player.x <= 300 && player.x > 250) {
+          moveLeft();
+        }
+        */
+
         /*
         if (cursors.left.isDown) {
           //player.setVelocityX(-160);
