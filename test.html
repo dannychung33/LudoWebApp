@@ -41,9 +41,9 @@
 
       function preload() {
         this.load.image("gameboard", "assets/LudoBoard750x750.png");
-        this.load.image("bluePiece3", "assets/BluePiece96x96.png");
-        this.load.image("redPiece1", "assets/RedPiece96x96.png");
-        this.load.image("bomb", "assets/bomb.png");
+        this.load.image("bluePiece3", "assets/BluePiece90x90.png");
+        this.load.image("redPiece1", "assets/RedPiece90x90.png");
+        this.load.image("bluePiece1", "assets/BluePiece90x90.png");
         this.load.spritesheet("dude", "assets/dude.png", {
           frameWidth: 32,
           frameHeight: 48,
@@ -55,8 +55,9 @@
         this.add.image(400, 400, "gameboard");
 
         // The player and its settings
-        bp3 = this.add.sprite(100, 450, "bluePiece3");
-        rp1 = this.add.sprite(700, 450, "redPiece1");
+        bp3 = this.add.sprite(100, 350, "bluePiece3");
+        bp1 = this.add.sprite(400, 700, "bluePiece1");
+        rp1 = this.add.sprite(400, 100, "redPiece1");
         //  Our player animations, turning, walking left and walking right.
         this.anims.create({
           key: "left",
@@ -101,24 +102,137 @@
       function moveLeft(piece) {
         piece.x -= 1;
       }
-
+      // bp3 initial position (100, 450)
+      const squares = [
+        [
+          // green START at 1
+          { x: 100, y: 350 }, // 1
+          { x: 150, y: 350 },
+          { x: 200, y: 350 },
+          { x: 250, y: 350 },
+          { x: 300, y: 350 },
+        ],
+        [
+          { x: 350, y: 300 },
+          { x: 350, y: 250 },
+          { x: 350, y: 200 },
+          { x: 350, y: 150 },
+          { x: 350, y: 100 },
+        ],
+        [
+          { x: 350, y: 50 },
+          { x: 400, y: 50 },
+          { x: 450, y: 50 },
+        ],
+        [
+          // red START at 14
+          { x: 450, y: 100 }, // 14
+          { x: 450, y: 150 },
+          { x: 450, y: 200 },
+          { x: 450, y: 250 },
+          { x: 450, y: 300 },
+        ],
+        [
+          { x: 500, y: 350 },
+          { x: 550, y: 350 },
+          { x: 600, y: 350 },
+          { x: 650, y: 350 },
+          { x: 700, y: 350 },
+        ],
+        [
+          { x: 750, y: 350 },
+          { x: 750, y: 400 },
+          { x: 750, y: 450 },
+        ],
+        [
+          // blue START at 27
+          { x: 700, y: 450 }, // 27
+          { x: 650, y: 450 },
+          { x: 600, y: 450 },
+          { x: 550, y: 450 },
+          { x: 500, y: 450 },
+        ],
+        [
+          { x: 450, y: 500 },
+          { x: 450, y: 550 },
+          { x: 450, y: 600 },
+          { x: 450, y: 650 },
+          { x: 450, y: 700 },
+        ],
+        [
+          { x: 450, y: 750 },
+          { x: 400, y: 750 },
+          { x: 350, y: 750 },
+        ],
+        [
+          // yellow START at 40
+          { x: 350, y: 700 },
+          { x: 350, y: 650 },
+          { x: 350, y: 600 },
+          { x: 350, y: 550 },
+          { x: 350, y: 500 },
+        ],
+        [
+          { x: 300, y: 450 },
+          { x: 250, y: 450 },
+          { x: 200, y: 450 },
+          { x: 150, y: 450 },
+          { x: 100, y: 450 },
+        ],
+        [
+          { x: 50, y: 450 },
+          { x: 50, y: 400 },
+          { x: 50, y: 350 },
+        ],
+        //Home strip squares
+        [
+          // Green strip
+          { x: 100, y: 400 },
+          { x: 150, y: 400 },
+          { x: 200, y: 400 },
+          { x: 250, y: 400 },
+          { x: 300, y: 400 },
+          { x: 350, y: 400 },
+        ],
+        [
+          // Red strip
+          { x: 400, y: 100 },
+          { x: 400, y: 150 },
+          { x: 400, y: 200 },
+          { x: 400, y: 250 },
+          { x: 400, y: 300 },
+          { x: 400, y: 350 },
+        ],
+        [
+          // Blue strip
+          { x: 700, y: 400 },
+          { x: 650, y: 400 },
+          { x: 600, y: 400 },
+          { x: 550, y: 400 },
+          { x: 500, y: 400 },
+          { x: 450, y: 400 },
+        ],
+        [
+          // Yellow strip
+          { x: 400, y: 700 },
+          { x: 400, y: 750 },
+          { x: 400, y: 800 },
+          { x: 400, y: 850 },
+          { x: 400, y: 900 },
+          { x: 400, y: 950 },
+        ],
+      ];
+      console.log(squares[0][4].x);
       function update() {
         if (gameOver) {
           return;
         }
         // Each move is 50 px
+        /*
         if (bp3.x < 150) {
           moveRight(bp3);
         }
-        if (bp3.x >= 150 && bp3.x < 200) {
-          moveRight(bp3);
-        }
-        if (bp3.x >= 200 && bp3.x < 250) {
-          moveRight(bp3);
-        }
-        if (bp3.x >= 250 && bp3.x < 300) {
-          moveRight(bp3);
-        }
+        */
 
         if (rp1.x > 650) {
           moveLeft(rp1);
