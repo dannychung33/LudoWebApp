@@ -224,7 +224,7 @@
       }
       // checks piece moves n spaces to the right
       function moveRightValidate(row, startIndex, spacesMoved) {
-        if (startIndex < squares[row].length) {
+        if (startIndex + spacesMoved < squares[row].length) {
           if (bp3.x < squares[row][startIndex + spacesMoved].x) {
             return true;
           } else {
@@ -261,7 +261,7 @@
           // moves piece right, must use matching validate function to stop
           right(bp3);
           // params for moveValidate are row, startIndex, spacesMoved
-          isMoving = moveRightValidate(0, 0, 4);
+          isMoving = moveRightValidate(0, 1, 3);
         }
         count++;
         /*
