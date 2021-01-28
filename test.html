@@ -96,13 +96,7 @@
       */
       }
 
-      function moveRight(piece) {
-        piece.x += 1;
-      }
-      function moveLeft(piece) {
-        piece.x -= 1;
-      }
-      // bp3 initial position (100, 450)
+      // all the square coordinates
       const squares = [
         [
           // green START at 1
@@ -222,31 +216,54 @@
           { x: 400, y: 950 },
         ],
       ];
+      function right(piece) {
+        piece.x += 2;
+      }
+      function left(piece) {
+        piece.x -= 2;
+      }
+      // checks piece moves n spaces to the right
+      function moveRightValidate(row, startIndex, spacesMoved) {
+        if (startIndex < squares[row].length) {
+          if (bp3.x < squares[row][startIndex + spacesMoved].x) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      }
+      // How to access an x coordinate from squares array
+      // this one is first row last square starting from green's start
       console.log(squares[0][4].x);
+
+      let count = 0;
+      let isMoving = true;
       function update() {
         if (gameOver) {
           return;
         }
         // Each move is 50 px
+        // This one uses the coordinates in squares array
         /*
-        if (bp3.x < 150) {
-          moveRight(bp3);
+        if (bp3.x < squares[0][1].x) {
+          right(bp3);
+        }
+        if (bp3.x >= squares[0][1].x && bp3.x < squares[0][2].x) {
+          right(bp3);
         }
         */
 
-        if (rp1.x > 650) {
-          moveLeft(rp1);
-        }
-        if (rp1.x <= 650 && rp1.x > 600) {
-          moveLeft(rp1);
-        }
-        if (rp1.x <= 600 && rp1.x > 550) {
-          moveLeft(rp1);
-        }
-        if (rp1.x <= 550 && rp1.x > 500) {
-          moveLeft(rp1);
-        }
+        // calls method to move right one space
 
+        if (isMoving) {
+          // moves piece right, must use matching validate function to stop
+          right(bp3);
+          // params for moveValidate are row, startIndex, spacesMoved
+          isMoving = moveRightValidate(0, 0, 4);
+        }
+        count++;
         /*
         if (player.x <= 300 && player.x > 250) {
           moveLeft();
