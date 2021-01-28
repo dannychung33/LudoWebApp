@@ -1,7 +1,7 @@
 const initLocal = require('./initialLocation.js')
 const gamePiece = require('./gamePiece.js')
 const rollDice = require('./rollDice.js')
-
+const highlight = require('./index.js')
 //possible movements for the coins
 PossibleMovements = {
   1: 'right',
@@ -172,12 +172,14 @@ module.exports = class User {
       return;
     }
     //if it gets here without returning: the user have at least a move available. this is where it diverge to ask for a move from user or execute automatically for a bot.
-
+    if (this.type == 'human') {
+      this.human_move(capable_pieces)
+    }
   }
 
   //function that allows the human to move
   human_move() {
-
+    highlight(idArray)
   }
 
 }

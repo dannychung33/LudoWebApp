@@ -8,8 +8,7 @@ canvas.height = innerHeight;
 "use strict";
 var button
 var payload
-// import { hightlight } from './highlight.js'
-// console.log('does it print', highlight(['b1']))
+
 function togglePayload() {
   payload.classList.toggle('hidden');
 }
@@ -321,8 +320,63 @@ document.onkeyup = function (e) {
   }
 };
 
-export let idToPiece = {
+export const idToPiece = {
   b1: bluePiece1, b2: bluePiece2, b3: bluePiece3,
   b4: bluePiece4, r1: redPiece1, r3: redPiece3, r4: redPiece4, r2: redPiece2, y1: yellowPiece1, y2: yellowPiece2, y3: yellowPiece3, y4: yellowPiece4, g1: greenPiece1, g4: greenPiece4, g3: greenPiece3, g2: greenPiece2
 }
 
+export function highlight(idArray) {
+  // console.log(idArray) [b1,g1]
+  let map = {
+    'g': "assets/GreenPiece96x96Transparent.png",
+    'y': "assets/YellowPiece96x96Transparent.png",
+    'b': "assets/BluePiece96x96Transparent.png",
+    'r': "assets/RedPiece96x96Transparent.png"
+  }
+  const itemList = []
+  for (let i = 0; i < idArray.length; i++) {
+    let cur = idArray[i] //b1
+    let item = idToPiece[cur] //idToPiece[b1] => bluePiece1
+    itemList.push(item)
+    item.image.src = map[cur[0]]
+    ctx.drawImage(gameBoard, 0, 0);
+    renderPieces();
+  }
+
+  const capture = function (e, move) {
+    let x = e.clientX
+    let y = e.clientY
+    let offsetX = -233
+    let offsetY = -130
+    console.log('coord', x + offsetX, y + offsetY)
+    for (let i = 0; i < itemList.length; i++) {
+      console.log('item', itemList[i])
+
+      if (itemList[i].x - 20 <= x + offsetX && itemList[i].x + 20 >= x + offsetX && itemList[i].y - 20 <= y + offsetY && itemList[i].y + 20 >= y + offsetY) {
+        console.log('itemList[i]', itemList[i])
+        move(itemList[i], move)
+        removehighlight(idArray)
+      }
+    }
+  }
+  window.addEventListener('click', capture)
+}
+
+console.log(highlight(['b4', 'g1']))
+export function removehighlight(idArray) {
+  console.log(idArray)
+  let map = {
+    'g': "assets/GreenPiece96x96.png",
+    'y': "assets/YellowPiece96x96.png",
+    'b': "assets/BluePiece96x96.png",
+    'r': "assets/RedPiece96x96.png"
+  }
+  for (let i = 0; i < idArray.length; i++) {
+    let cur = idArray[i]
+    let item = idToPiece[cur]
+    item.image.src = map[cur[0]]
+    console.log(item.image.src)
+    ctx.drawImage(gameBoard, 0, 0);
+    renderPieces();
+  }
+}
