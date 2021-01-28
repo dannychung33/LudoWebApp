@@ -4,6 +4,9 @@ console.log(canvas.childNodes)
 export const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 800;
+
+
+
 "use strict";
 var button
 var payload
@@ -241,30 +244,43 @@ function renderOtherPieces(movingPiece) {
 }
 // Draw path method call
 drawLeftLine(750, 425, 400, 425);
-
+var locationArray = [{x: 600, y: 450}, {x: 550, y: 450}, {x: 500, y: 450}]; 
+let nextPosToMove = 0;
 function leftSlideMove(piece) {
+  
   let pieceX = piece.x;
   let pieceY = piece.y;
   let startTime = new Date().getTime();
   let slideInterval = setInterval(function animate() {
     return function () {
-      //requestAnimationFrame(animate);
-
+      requestAnimationFrame(animate);
       ctx.clearRect(pieceX, pieceY, 96, 96);
-
       ctx.drawImage(gameBoard, 0, 0);
       renderOtherPieces(piece)
 
       ctx.drawImage(piece.image, pieceX, pieceY);
-      pieceX -= 0.4;
+      console.log("location array: " + locationArray[nextPosToMove]);
+      console.log("nextPos: " + nextPosToMove);
+      if(pieceX <= locationArray[nextPosToMove].x){
+        piece.x = pieceX;
+        clearInterval(slideInterval);
+      }
+      console.log(locationArray[0].x)
+      console.log(piece.x)
+      console.log(pieceX)
+      pieceX -= 1;
       // stop condition
+      /*
       if ((new Date().getTime() - startTime) > 490) {
         piece.x = pieceX;
         clearInterval(slideInterval);
       }
+      */
+
     };
 
   }(), 0)
+  nextPosToMove++;
 };
 
 function rightSlideMove(piece) {
@@ -424,7 +440,7 @@ function startPlay(gamePiece){
   ctx.drawImage(gamePiece.image, 440, 490);
   gamePiece.image.src = "assets/GreenPiece96x96.png";
 }
-leftSlideMove(redPiece2);
-startPlay(greenPiece4)
+leftSlideMove(yellowPiece3);
+
 //highlight(bluePiece3);
 //unHighlight(bluePiece1);
