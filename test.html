@@ -293,6 +293,9 @@
           piece.x += 2;
           piece.y -= 2;
         }
+        else{
+          isUpperRight = false;
+        }
       }
       function lowerRightDiagonal(piece){
         if(piece.x < 500 && piece.y < 350){
@@ -369,6 +372,8 @@
       let isMovingDown = true;
       let isMovingUp = true;
       let isMovingLeft = true;
+      let isUpperRight = true;
+
       let redPieceInPlay = true;
       let bluePieceInPlay = true;
       let yellowPieceInPlay = true;
@@ -395,7 +400,9 @@
           // params for moveDownValidate are row, startIndex, spacesMoved
           isMovingDown = moveDownValidate(rp1, 7, 0, 3);
         }
-        upperRightDiagonal(gp1);
+        if(isUpperRight){
+          upperRightDiagonal(gp1);
+        }
         if(greenPieceInPlay){
         //greenPieceStart(gp1);
           greenPieceInPlay = false;
