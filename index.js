@@ -1,28 +1,24 @@
-const canvas = document.querySelector('canvas');
-import { drawLeftLine } from './pathDrawer.js';
-console.log(canvas.childNodes)
-export const ctx = canvas.getContext('2d');
-canvas.width = 800;
-canvas.height = 800;
-
-
 
 "use strict";
 var button
 var payload
+
 function togglePayload() {
-  payload.classList.toggle('hidden');
+  if (payload.style.display === "none") {
+    payload.style.display = "block";
+  } else {
+    payload.style.display = "none";
+  }
 }
 function init() {
-  button = document.querySelector('.button')
+  button = document.querySelector('.rules_button')
   payload = document.querySelector('.payload')
-  button.onclick = togglePayload;
+  payload.style.display = "none";
 }
 document.addEventListener("DOMContentLoaded", init, false);
 //alert("Click on canvas for left, click on dice for right, up and down keys for up and down")
-console.log(canvas);
-console.log(ctx);
 
+/*
 const gameBoard = new Image();
 
 let bluePiece1 = {
@@ -270,12 +266,12 @@ function leftSlideMove(piece) {
       console.log(pieceX)
       pieceX -= 1;
       // stop condition
-      /*
+      
       if ((new Date().getTime() - startTime) > 490) {
         piece.x = pieceX;
         clearInterval(slideInterval);
       }
-      */
+      
 
     };
 
@@ -444,3 +440,4 @@ leftSlideMove(yellowPiece3);
 
 //highlight(bluePiece3);
 //unHighlight(bluePiece1);
+*/

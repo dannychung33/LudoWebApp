@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start Game</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Start Game</title>
-</head>
+  <body>
+    <form action="">
+      Pick a color to play: <br />
+      <input type="radio" name="color" value="green" checked /> Green <br />
+      <input type="radio" name="color" value="red" /> Red <br />
+      <input type="radio" name="color" value="blue" /> Blue <br />
+      <input type="radio" name="color" value="yellow" /> Yellow <br />
+      <button type="button" onclick="pick_color()">Submit</button>
+    </form>
 
-<body>
-  <form action="">
-    Pick a color to play: <br />
-    <input type="radio" name="color" value="green" checked /> Green <br />
-    <input type="radio" name="color" value="red" /> Red <br />
-    <input type="radio" name="color" value="blue" /> Blue <br />
-    <input type="radio" name="color" value="yellow" /> Yellow <br />
-    <button type="button" onclick="pick_color()">Submit</button>
-  </form>
+    <script>
+      function pick_color() {
+        var radios = document.getElementsByTagName("input");
 
-  <script>
-    function pick_color() {
-      var radios = document.getElementsByTagName("input");
-
-      for (let i = 0; i < radios.length; i++) {
-        if (radios[i].checked) {
-          if (typeof (Storage) !== "undefined") {
-            localStorage.setItem("color", radios[i].value);
+        for (let i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            if (typeof Storage !== "undefined") {
+              localStorage.setItem("color", radios[i].value);
+            }
           }
         }
+
+        window.location.href = "test.html";
       }
-
-      window.location.href = "ludo.html";
-
-    }
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
