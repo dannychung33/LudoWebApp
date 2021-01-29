@@ -83,13 +83,8 @@
         y: 0,
       };
       var player;
-      var stars;
-      var bombs;
-      var platforms;
-      var cursors;
-      var score = 0;
+     
       var gameOver = false;
-      var scoreText;
 
       var game = new Phaser.Game(config);
 
@@ -122,7 +117,7 @@
         yp3 = this.add.sprite(98, 695, "yellowPiece");
         yp4 = this.add.sprite(233, 695, "yellowPiece");
 
-        gp1 = this.add.sprite(350, 300, "greenPiece");
+        gp1 = this.add.sprite(98, 100, "greenPiece");
         gp2 = this.add.sprite(229, 100, "greenPiece");
         gp3 = this.add.sprite(98, 230, "greenPiece");
         gp4 = this.add.sprite(229, 230, "greenPiece");
@@ -297,6 +292,22 @@
       function up(piece) {
         piece.y -= 2;
       }
+      function greenPieceStart(piece){
+        piece.x = 100;
+        piece.y = 350;
+      }
+      function redPieceStart(piece){
+        piece.x = 450;
+        piece.y = 100;
+      }
+      function yellowPieceStart(piece){
+        piece.x = 350;
+        piece.y = 700;
+      }
+      function bluePieceStart(piece){
+        piece.x = 700;
+        piece.y = 450;
+      }
       // stops piece at n spaces to the right
       function moveRightValidate(piece, row, startIndex, spacesMoved) {
         if (startIndex + spacesMoved < squares[row].length) {
@@ -376,11 +387,17 @@
           // params for moveDownValidate are row, startIndex, spacesMoved
           isMovingDown = moveDownValidate(rp1, 7, 0, 3);
         }
+        greenPieceStart(gp1);
+        redPieceStart(rp2);
+        bluePieceStart(bp2);
+        yellowPieceStart(yp2);
+        /*
         if (isMovingUp && count > 25) {
           up(gp1);
           // params for moveUpValidate are row, startIndex, spacesMoved
           isMovingUp = moveUpValidate(gp1, 1, 0, 4);
         }
+        */
         if (isMovingLeft && count > 25) {
           left(yp1);
           // params for moveLeftValidate are row, startIndex, spacesMoved
