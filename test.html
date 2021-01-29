@@ -95,21 +95,38 @@
 
       function preload() {
         this.load.image("gameboard", "assets/LudoBoard750x750.png");
-        this.load.image("bluePiece3", "assets/BluePiece90x90.png");
-        this.load.image("redPiece1", "assets/RedPiece90x90.png");
-        this.load.image("greenPiece1", "assets/GreenPiece90x90.png");
-        this.load.image("yellowPiece1", "assets/YellowPiece90x90.png");
+        this.load.image("bluePiece", "assets/BluePiece90x90.png");
+        this.load.image("redPiece", "assets/RedPiece90x90.png");
+        this.load.image("greenPiece", "assets/GreenPiece90x90.png");
+        this.load.image("yellowPiece", "assets/YellowPiece90x90.png");
       }
 
       function create() {
         //  A simple background for our game
         this.add.image(400, 400, "gameboard");
 
-        // The player and its settings
-        bp3 = this.add.sprite(500, 350, "bluePiece3");
-        gp1 = this.add.sprite(350, 300, "greenPiece1");
-        rp1 = this.add.sprite(450, 500, "redPiece1");
-        yp1 = this.add.sprite(300, 450, "yellowPiece1");
+        // The pieces and its settings
+        // moving piece
+        bp1 = this.add.sprite(500, 350, "bluePiece");
+        bp2 = this.add.sprite(703, 565, "bluePiece");
+        bp3 = this.add.sprite(568, 695, "bluePiece");
+        bp4 = this.add.sprite(703, 695, "bluePiece")
+
+        rp1 = this.add.sprite(450, 500, "redPiece");
+        rp2 = this.add.sprite(703, 100, "redPiece");
+        rp3 = this.add.sprite(568, 230, "redPiece");
+        rp4 = this.add.sprite(703, 230, "redPiece");
+
+        yp1 = this.add.sprite(300, 450, "yellowPiece");
+        yp2 = this.add.sprite(233, 565, "yellowPiece");
+        yp3 = this.add.sprite(98, 695, "yellowPiece");
+        yp4 = this.add.sprite(233, 695, "yellowPiece");
+
+        gp1 = this.add.sprite(350, 300, "greenPiece");
+        gp2 = this.add.sprite(229, 100, "greenPiece");
+        gp3 = this.add.sprite(98, 230, "greenPiece");
+        gp4 = this.add.sprite(229, 230, "greenPiece");
+
         //  Our player animations, turning, walking left and walking right.
         this.anims.create({
           key: "left",
@@ -338,6 +355,8 @@
       let isMovingUp = true;
       let isMovingLeft = true;
 
+      const colors = ['green', 'red', 'blue', 'yellow']
+      // Main game loop
       function update() {
         if (gameOver) {
           return;
@@ -346,11 +365,11 @@
 
         if (isMovingRight && count > 25) {
           // moves piece right, must use matching validate function to stop
-          right(bp3);
+          right(bp1);
           // check squares for row and startIndex to make sense
 
           // params for moveRightValidate are row, startIndex, spacesMoved
-          isMovingRight = moveRightValidate(bp3, 4, 0, 2);
+          isMovingRight = moveRightValidate(bp1, 4, 0, 2);
         }
         if (isMovingDown && count > 25) {
           down(rp1);
