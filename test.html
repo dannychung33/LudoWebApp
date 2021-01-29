@@ -43,7 +43,8 @@
         this.load.image("gameboard", "assets/LudoBoard750x750.png");
         this.load.image("bluePiece3", "assets/BluePiece90x90.png");
         this.load.image("redPiece1", "assets/RedPiece90x90.png");
-        this.load.image("bluePiece1", "assets/BluePiece90x90.png");
+        this.load.image("greenPiece1", "assets/GreenPiece90x90.png");
+        this.load.image("yellowPiece1", "assets/YellowPiece90x90.png");
         this.load.spritesheet("dude", "assets/dude.png", {
           frameWidth: 32,
           frameHeight: 48,
@@ -56,8 +57,9 @@
 
         // The player and its settings
         bp3 = this.add.sprite(500, 350, "bluePiece3");
-        //bp1 = this.add.sprite(400, 700, "bluePiece1");
-        rp1 = this.add.sprite(400, 100, "redPiece1");
+        gp1 = this.add.sprite(350, 300, "greenPiece1");
+        rp1 = this.add.sprite(450, 500, "redPiece1");
+        yp1 = this.add.sprite(300, 450, "yellowPiece1");
         //  Our player animations, turning, walking left and walking right.
         this.anims.create({
           key: "left",
@@ -228,7 +230,7 @@
       function up(piece) {
         piece.y -= 2;
       }
-      // checks piece moves n spaces to the right
+      // stops piece at n spaces to the right
       function moveRightValidate(piece, row, startIndex, spacesMoved) {
         if (startIndex + spacesMoved < squares[row].length) {
           if (piece.x < squares[row][startIndex + spacesMoved].x) {
@@ -240,6 +242,19 @@
           return false;
         }
       }
+      // stops piece at n spaces to the left
+      function moveLeftValidate(piece, row, startIndex, spacesMoved) {
+        if (startIndex + spacesMoved < squares[row].length) {
+          if (piece.x > squares[row][startIndex + spacesMoved].x) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      }
+      // stops piece at n spaces down
       function moveDownValidate(piece, row, startIndex, spacesMoved) {
         if (startIndex + spacesMoved < squares[row].length) {
           if (piece.y < squares[row][startIndex + spacesMoved].y) {
@@ -251,40 +266,56 @@
           return false;
         }
       }
+      // stops piece at n spaces up
+      function moveUpValidate(piece, row, startIndex, spacesMoved) {
+        if (startIndex + spacesMoved < squares[row].length) {
+          if (piece.y > squares[row][startIndex + spacesMoved].y) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      }
       // How to access an x coordinate from squares array
       // this one is first row last square starting from green's start
-      console.log(squares[0][4].x);
+      console.log("TEST x pos of row 1 last square: " + squares[0][4].x);
 
       let count = 0;
       let isMovingRight = true;
       let isMovingDown = true;
+      let isMovingUp = true;
+      let isMovingLeft = true;
+
       function update() {
         if (gameOver) {
           return;
         }
         // Each move is 50 px
-        // This one uses the coordinates in squares array
-        /*
-        if (bp3.x < squares[0][1].x) {
-          right(bp3);
-        }
-        if (bp3.x >= squares[0][1].x && bp3.x < squares[0][2].x) {
-          right(bp3);
-        }
-        */
-
-        // calls method to move right one space
 
         if (isMovingRight && count > 25) {
           // moves piece right, must use matching validate function to stop
           right(bp3);
           // check squares for row and startIndex to make sense
-          // params for moveValidate are row, startIndex, spacesMoved
+
+          // params for moveRightValidate are row, startIndex, spacesMoved
           isMovingRight = moveRightValidate(bp3, 4, 0, 2);
         }
         if (isMovingDown && count > 25) {
           down(rp1);
-          isMovingDown = moveDownValidate(rp1, 13, 0, 5);
+          // params for moveDownValidate are row, startIndex, spacesMoved
+          isMovingDown = moveDownValidate(rp1, 7, 0, 3);
+        }
+        if (isMovingUp && count > 25) {
+          up(gp1);
+          // params for moveUpValidate are row, startIndex, spacesMoved
+          isMovingUp = moveUpValidate(gp1, 1, 0, 4);
+        }
+        if (isMovingLeft && count > 25) {
+          left(yp1);
+          // params for moveLeftValidate are row, startIndex, spacesMoved
+          isMovingLeft = moveLeftValidate(yp1, 10, 0, 1);
         }
         count++;
         /*
@@ -312,7 +343,7 @@
         }
         */
       }
-
+      /*
       function collectStar(player, star) {
         star.disableBody(true, true);
 
@@ -348,6 +379,7 @@
 
         gameOver = true;
       }
+      */
     </script>
   </body>
 </html>
