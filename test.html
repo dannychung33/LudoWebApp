@@ -117,7 +117,7 @@
         yp3 = this.add.sprite(98, 695, "yellowPiece");
         yp4 = this.add.sprite(233, 695, "yellowPiece");
 
-        gp1 = this.add.sprite(98, 100, "greenPiece");
+        gp1 = this.add.sprite(300, 350, "greenPiece");
         gp2 = this.add.sprite(229, 100, "greenPiece");
         gp3 = this.add.sprite(98, 230, "greenPiece");
         gp4 = this.add.sprite(229, 230, "greenPiece");
@@ -288,6 +288,30 @@
         piece.x = 700;
         piece.y = 450;
       }
+      function upperRightDiagonal(piece){
+        if(piece.x < 350 && piece.y > 300){
+          piece.x += 2;
+          piece.y -= 2;
+        }
+      }
+      function lowerRightDiagonal(piece){
+        if(piece.x < 500 && piece.y < 350){
+          piece.x += 2;
+          piece.y += 2;
+        }
+      }
+      function lowerLeftDiagonal(piece){
+        if(piece.x > 450 && piece.y < 500){
+          piece.x -= 2;
+          piece.y += 2;
+        }
+      }
+      function upperLeftDiagonal(piece){
+        if(piece.x > 300 && piece.y > 450){
+          piece.x -= 2;
+          piece.y -= 2;
+        }
+      }
       // stops piece at n spaces to the right
       function moveRightValidate(piece, row, startIndex, spacesMoved) {
         if (startIndex + spacesMoved < squares[row].length) {
@@ -345,6 +369,10 @@
       let isMovingDown = true;
       let isMovingUp = true;
       let isMovingLeft = true;
+      let redPieceInPlay = true;
+      let bluePieceInPlay = true;
+      let yellowPieceInPlay = true;
+      let greenPieceInPlay = true;
 
       const colors = ['green', 'red', 'blue', 'yellow']
       // Main game loop
@@ -367,10 +395,24 @@
           // params for moveDownValidate are row, startIndex, spacesMoved
           isMovingDown = moveDownValidate(rp1, 7, 0, 3);
         }
-        greenPieceStart(gp1);
-        redPieceStart(rp2);
-        bluePieceStart(bp2);
-        yellowPieceStart(yp2);
+        upperRightDiagonal(gp1);
+        if(greenPieceInPlay){
+        //greenPieceStart(gp1);
+          greenPieceInPlay = false;
+        }
+        if(redPieceInPlay){
+          redPieceStart(rp2);
+          redPieceInPlay = false;
+        }
+        if(bluePieceInPlay){
+          bluePieceStart(bp2);
+          bluePieceInPlay = false;
+        }
+        if(yellowPieceInPlay){
+          yellowPieceStart(yp2);
+          yellowPieceInPlay = false;
+        }
+        
         /*
         if (isMovingUp && count > 25) {
           up(gp1);
